@@ -1,5 +1,7 @@
 [![Awesome AdOps](https://github.com/adops-tool/awesome-adops-site/blob/main/image/awesome-adops-site_1.png)](https://github.com/adops-tool/awesome-adops-site)
 
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
+
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
 # Awesome AdOps
@@ -7,6 +9,8 @@
 A curated directory of practical resources for advertising operations (AdOps), ad technology, programmatic media, and publisher monetization. It prioritizes authoritative documentation, useful tools, and clearly relevant projects.
 
 > **Note:** Ad-tech changes quickly. Products, endpoints, and ownership can change; check the linked source for current availability. Inclusion is not an endorsement. The directory is organized by a resource’s primary use; a few tools may overlap categories.
+
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
 ## Contents
 
@@ -31,6 +35,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 - [Ad-Tech Research & Site Discovery](#ad-tech-research--site-discovery)
 - [Privacy Sandbox: Retired APIs & Current Status](#privacy-sandbox-retired-apis--current-status)
 - [Learning, News & Communities](#learning-news--communities)
+
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
 ## Standards, Trade Bodies & Specifications
 
@@ -67,6 +73,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Standards](image/dot_1.gif) [VAST Samples](https://github.com/InteractiveAdvertisingBureau/VAST_Samples) - Example VAST tags and creatives.  
 ![Standards](image/dot_2.gif) [VMAP](https://github.com/InteractiveAdvertisingBureau/VMAP) - Video Multiple Ad Playlist specification.
 
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
+
 ## Header Bidding & Prebid
 
 ![Header Bidding](image/dot_1.gif) [Bidder adapter guide](https://docs.prebid.org/dev-docs/bidder-adaptor.html) - Implementing a Prebid.js bidder adapter.  
@@ -90,6 +98,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Header Bidding](image/dot_5.gif) [Professor Prebid](https://github.com/prebid/professor-prebid) - Browser extension for inspecting Prebid auctions.  
 ![Header Bidding](image/dot_1.gif) [Professor Prebid extension](https://chromewebstore.google.com/detail/professor-prebid/kdnllijdimhbledmfdbljampcdphcbdc) - Chrome DevTools panel for Prebid debugging.
 
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
+
 ## Ad Serving, Publisher Platforms & Monetization
 
 ![Ad Serving](image/dot_1.gif) [AdButler](https://www.adbutler.com/) - Ad serving and campaign management.  
@@ -107,6 +117,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Ad Serving](image/dot_3.gif) [GPT samples](https://developers.google.com/publisher-tag/samples) - Publisher Tag implementation examples.  
 ![Ad Serving](image/dot_4.gif) [Revive Adserver](https://www.revive-adserver.com/) - Open-source ad serving platform.  
 ![Ad Serving](image/dot_5.gif) [Revive Adserver GitHub](https://github.com/revive-adserver/revive-adserver) - Source code for Revive Adserver.
+
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
 ## Demand-Side Platforms & Buying
 
@@ -132,6 +144,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![DSP](image/dot_5.gif) [Viant](https://www.viantinc.com/) - Demand-side platform and advertising technology.  
 ![DSP](image/dot_1.gif) [Yahoo Advertising](https://www.yahooinc.com/advertising/) - Media, data, and advertising platform.
 
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
+
 ## Native & Content Advertising
 
 ![Native Ads](image/dot_1.gif) [Dianomi](https://www.dianomi.com/) - Native advertising for financial and business publishers.  
@@ -141,6 +155,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Native Ads](image/dot_5.gif) [Revcontent](https://revcontent.com/) - Content recommendation and native advertising.  
 ![Native Ads](image/dot_1.gif) [Taboola](https://www.taboola.com/) - Content discovery and performance advertising.  
 ![Native Ads](image/dot_2.gif) [Zemanta](https://www.zemanta.com/) - Native advertising and programmatic campaign platform.
+
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
 ## Supply-Side Platforms, Exchanges & Publisher Yield
 
@@ -203,12 +219,16 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![SSP & Yield](image/dot_2.gif) [Yieldlab](https://www.yieldlab.de/) - Programmatic publisher platform.  
 ![SSP & Yield](image/dot_3.gif) [Yieldmo](https://www.yieldmo.com/) - Advertising exchange and creative formats.
 
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
+
 ## Retail Media & Commerce Advertising
 
 ![Retail Media](image/dot_1.gif) [AnyMind Group](https://anymindgroup.com/) - Commerce, marketing, and publisher technology.  
 ![Retail Media](image/dot_2.gif) [CitrusAd](https://www.citrusad.com/) - Retail media advertising technology.  
 ![Retail Media](image/dot_3.gif) [Criteo](https://www.criteo.com/) - Commerce media and advertising technology.  
 ![Retail Media](image/dot_4.gif) [Kevel](https://kevel.com/) - Ad serving and retail media infrastructure for commerce businesses.
+
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
 ## Video, CTV, Audio & Rich Media
 
@@ -243,6 +263,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Video](image/dot_5.gif) [Video.js](https://videojs.com/) - Open-source HTML5 video player.  
 ![Video](image/dot_1.gif) [Video.js VAST/VPAID](https://github.com/mailonline/videojs-vast-vpaid) - Video.js plugin for VAST and VPAID ads.
 
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
+
 ## Ads.txt, App-ads.txt, Sellers.json & Supply Chain
 
 ![Supply Chain](image/dot_1.gif) [10up Ads.txt](https://github.com/10up/ads-txt) - WordPress ads.txt management plugin.  
@@ -258,6 +280,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Supply Chain](image/dot_1.gif) [Sellers.guide](https://sellers.guide/) - Sellers.json and supply chain transparency tools.  
 ![Supply Chain](image/dot_2.gif) [Sellers.json](https://iabtechlab.com/sellers-json/) - Seller transparency specification resources.  
 ![Supply Chain](image/dot_4.gif) [Well-known.dev](https://well-known.dev/) - Explore well-known files and web identity resources.
+
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
 ## Privacy, Consent & Identity
 
@@ -297,6 +321,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Privacy](image/dot_4.gif) [Unified ID 2.0](https://unifiedid.com/) - Industry identity framework and documentation.  
 ![Privacy](image/dot_5.gif) [Usercentrics](https://www.usercentrics.com/) - Consent management platform.
 
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
+
 ## Ad Quality, Verification & Fraud Prevention
 
 ![Verification](image/dot_1.gif) [Ad Lightning](https://www.adlightning.com/) - Ad quality and creative scanning.  
@@ -318,6 +344,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Verification](image/dot_3.gif) [Scalarr](https://www.scalarr.io/) - Mobile advertising fraud prevention.  
 ![Verification](image/dot_4.gif) [Spider AF](https://www.spideraf.com/) - Ad fraud detection and prevention.  
 ![Verification](image/dot_5.gif) [TrafficGuard](https://www.trafficguard.ai/) - Invalid traffic detection and prevention.
+
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
 ## Analytics, Attribution & Marketing Data
 
@@ -367,6 +395,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Analytics](image/dot_4.gif) [Whatagraph](https://whatagraph.com/) - Marketing reporting and analytics.  
 ![Analytics](image/dot_5.gif) [Windsor.ai](https://www.windsor.ai/) - Marketing data integration and attribution.
 
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
+
 ## Ad Operations, Workflow & Sales
 
 ![Operations](image/dot_1.gif) [Adslot](https://www.adslot.com/) - Media trading and workflow technology.  
@@ -382,6 +412,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Operations](image/dot_1.gif) [Naviga](https://www.navigaglobal.com/) - Media business and publishing technology.  
 ![Operations](image/dot_2.gif) [Operative](https://www.operative.com/) - Media operations and advertising management.  
 ![Operations](image/dot_3.gif) [Placements.io](https://www.placements.io/) - Ad sales and revenue operations platform.
+
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
 ## Creative, Tags & Campaign Utilities
 
@@ -403,6 +435,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Creative](image/dot_2.gif) [Rich Media Gallery Tools](https://richmediagallery.com/tools/) - Rich-media creative resources and utilities.  
 ![Creative](image/dot_4.gif) [Squoosh](https://squoosh.app/) - Browser-based image compression and conversion.  
 ![Creative](image/dot_5.gif) [TinyPNG](https://tinypng.com/) - Compress PNG and JPEG assets.
+
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
 ## Browser Extensions & AdOps Debugging
 
@@ -427,6 +461,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Extensions](image/dot_4.gif) [Sellers.json Inspector](https://chromewebstore.google.com/detail/sellersjson-inspector/neboddkndfhfoeoolmdfgeelajmpdkfm) - Parse and inspect sellers.json and buyers.json files, with seller-ID checks against publisher ads.txt files.  
 ![Extensions](image/dot_5.gif) [TCF Auditor](https://chromewebstore.google.com/detail/tcf-auditor/jcniohndgobdkelnbpbaogfhabjjkbkb) - Inspect consent framework behavior.  
 ![Extensions](image/dot_1.gif) [User-Agent Switcher](https://chromewebstore.google.com/detail/user-agent-switcher-for-c/djflhoibgkdhkhhcedjiklpkjnoahfmg) - Test delivery behavior with alternate user agents.
+
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
 ## Developer Tooling & Testing
 
@@ -478,6 +514,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Developer Tools](image/dot_1.gif) [WebPageTest](https://www.webpagetest.org/) - Website performance testing.  
 ![Developer Tools](image/dot_2.gif) [Wireshark](https://www.wireshark.org/) - Network protocol analyzer.
 
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
+
 ## Open-Source Ad Servers, RTB & Publisher Engineering
 
 ![Open Source](image/dot_1.gif) [Ad Ops repositories by adops-tool](https://github.com/adops-tool) - Open-source utilities and projects for ad operations.  
@@ -488,6 +526,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Open Source](image/dot_1.gif) [SSPServer](https://github.com/sspserver/sspserver) - Open-source supply-side platform project.  
 ![Open Source](image/dot_2.gif) [Vanilla RTB](https://github.com/vanilla-rtb/vanilla-rtb) - Open-source real-time bidding project.  
 ![Open Source](image/dot_4.gif) [XRTB](https://github.com/benmfaul/XRTB) - Open-source real-time bidding project.
+
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
 ## Mobile Advertising, App Monetization & Gaming
 
@@ -522,6 +562,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Mobile](image/dot_4.gif) [Vungle](https://www.vungle.com/) - Mobile performance marketing and monetization.  
 ![Mobile](image/dot_5.gif) [Y8 Games](https://www.y8.com/) - Browser games platform and publisher network.
 
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
+
 ## Ad-Tech Research & Site Discovery
 
 ![Research](image/dot_1.gif) [42matters](https://42matters.com/) - App market data and intelligence APIs.  
@@ -552,6 +594,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Research](image/dot_1.gif) [Wappalyzer](https://www.wappalyzer.com/) - Identify website technologies.  
 ![Research](image/dot_2.gif) [WhatRunsWhere](https://www.whatrunswhere.com/) - Competitive display advertising intelligence.
 
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
+
 ## Privacy Sandbox: Retired APIs & Current Status
 
 ![Privacy Sandbox](image/dot_1.gif) [Attribution (W3C)](https://github.com/w3c/attribution) - W3C effort to develop an interoperable, privacy-preserving web attribution standard.  
@@ -562,6 +606,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Privacy Sandbox](image/dot_1.gif) [Protected Audience documentation (retired)](https://github.com/privacysandbox/protected-auction-services-docs) - Archived documentation for Protected Audience server-side services; the API was retired in 2025.  
 ![Privacy Sandbox](image/dot_2.gif) [Topics API explainer (retired)](https://github.com/patcg-individual-drafts/topics) - Archived proposal and explainer for the Topics API, retired by Google in 2025.  
 ![Privacy Sandbox](image/dot_3.gif) [TURTLEDOVE proposal](https://github.com/WICG/turtledove) - Archived early proposal that informed later privacy-preserving remarketing work.
+
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
 ## Learning, News & Communities
 
@@ -591,6 +637,8 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Learning](image/dot_4.gif) [The Drum](https://www.thedrum.com/) - Global marketing and media coverage.  
 ![Learning](image/dot_5.gif) [The Trade Desk Edge Academy](https://www.thetradedesk.com/us/edge-academy) - Digital media and programmatic learning.  
 ![Learning](image/dot_1.gif) [VideoWeek](https://www.videoweek.com/) - Video advertising and streaming industry news.
+
+<img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
 ## Contributing
 
