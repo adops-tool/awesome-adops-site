@@ -34,8 +34,6 @@ A practical, curated directory of websites, documentation, standards, tools, ope
 
 ## Standards, Trade Bodies & Specifications
 
-## Standards, Trade Bodies & Specifications
-
 ![Standards](image/dot_1.gif) [IAB Tech Lab](https://iabtechlab.com/) Technical standards and tools for digital advertising.  
 ![Standards](image/dot_2.gif) [IAB Tech Lab Tools](https://tools.iabtechlab.com/) Validators and utilities for advertising standards.  
 ![Standards](image/dot_3.gif) [IAB Tech Lab Compliance](https://compliance.iabtechlab.com/) Compliance resources for industry specifications.  
