@@ -624,4 +624,4 @@ Found a useful resource or spotted an outdated link? Please read [CONTRIBUTING.m
 
 ## License
 
-This list is available under the repository's [MIT License](LICENSE). Product names and trademarks belong to their respective owners.
+This list is available under the repository's [CC0 1.0 Universal](LICENSE). Product names and trademarks belong to their respective owners.
