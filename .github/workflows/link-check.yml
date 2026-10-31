@@ -1,0 +1,37 @@
+name: Link check
+
+on:
+  push:
+    branches: [main]
+    paths: ['README.md', 'scripts/check_links.py', '.github/workflows/link-check.yml']
+  pull_request:
+    paths: ['README.md', 'scripts/check_links.py']
+  schedule:
+    # Every Monday at 06:00 UTC, so rot is caught without any manual work.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check links in README.md
+        run: python3 scripts/check_links.py --json link-report.json
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-report
+          path: link-report.json
+          if-no-files-found: ignore

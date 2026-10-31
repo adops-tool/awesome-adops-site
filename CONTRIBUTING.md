@@ -70,3 +70,13 @@ Use the existing files `image/dot_1.gif` through `image/dot_5.gif`; vary the mar
 4. Submit a pull request. Maintainers may adjust descriptions, placement, and formatting for consistency.
 
 Prioritize the usefulness and accuracy of the list over its size; a resource should not be added simply because it exists.
+
+## Link checks
+
+Links rot. Before opening a pull request, run the checker locally:
+
+```bash
+python3 scripts/check_links.py
+```
+
+It verifies every link in `README.md` and also detects Chrome Web Store listings that were removed from the store (`This product is unavailable`). The same script runs in CI on pull requests and weekly on a schedule (`.github/workflows/link-check.yml`), so stale entries get caught even when nobody edits the list.
