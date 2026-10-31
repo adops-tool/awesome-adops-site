@@ -35,38 +35,37 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ## Standards, Trade Bodies & Specifications
 
 - ![Standards](image/dot_1.gif) [AdCOM](https://github.com/InteractiveAdvertisingBureau/AdCOM) - Advertising Common Object Model.
-- ![Standards](image/dot_2.gif) [Ads.txt crawler](https://github.com/InteractiveAdvertisingBureau/ads-txt-crawler) - Crawler for ads.txt and related files.
-- ![Standards](image/dot_3.gif) [CATS](https://github.com/InteractiveAdvertisingBureau/CATS) - Content Taxonomy and related classification resources.
-- ![Standards](image/dot_4.gif) [Consent String SDK Java](https://github.com/InteractiveAdvertisingBureau/Consent-String-SDK-Java) - Consent-string utilities for Java.
-- ![Standards](image/dot_5.gif) [Consent String SDK JS](https://github.com/InteractiveAdvertisingBureau/Consent-String-SDK-JS) - TCF consent-string utilities for JavaScript.
-- ![Standards](image/dot_1.gif) [Global Privacy Platform](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform) - Framework for communicating privacy signals.
-- ![Standards](image/dot_2.gif) [IAB](https://www.iab.com/) - Digital advertising industry association.
-- ![Standards](image/dot_3.gif) [IAB Europe](https://iabeurope.eu/) - European digital advertising association.
-- ![Standards](image/dot_4.gif) [IAB TCF JavaScript SDK](https://github.com/InteractiveAdvertisingBureau/iabtcf-es) - JavaScript implementation of TCF APIs.
-- ![Standards](image/dot_5.gif) [IAB Tech Lab](https://iabtechlab.com/) - Technical standards and tools for digital advertising.
-- ![Standards](image/dot_1.gif) [IAB Tech Lab Compliance](https://compliance.iabtechlab.com/) - Compliance resources for industry specifications.
-- ![Standards](image/dot_2.gif) [IAB Tech Lab GPP](https://iabtechlab.com/standards/gpp/) - Global Privacy Platform overview and resources.
-- ![Standards](image/dot_3.gif) [IAB Tech Lab Tools](https://tools.iabtechlab.com/) - Validators and utilities for advertising standards.
-- ![Standards](image/dot_4.gif) [MRAID](https://github.com/InteractiveAdvertisingBureau/MRAID) - Mobile Rich Media Ad Interface Definitions.
-- ![Standards](image/dot_5.gif) [Open Measurement JS Clients](https://github.com/InteractiveAdvertisingBureau/Open-Measurement-JSClients) - JavaScript OM SDK clients.
-- ![Standards](image/dot_1.gif) [Open Measurement SDK](https://iabtechlab.com/standards/open-measurement-sdk/) - Open measurement standard for ad verification.
-- ![Standards](image/dot_2.gif) [OpenRTB](https://iabtechlab.com/standards/openrtb/) - Real-time bidding protocol and specifications.
-- ![Standards](image/dot_3.gif) [OpenRTB 2.x](https://github.com/InteractiveAdvertisingBureau/openrtb2.x) - OpenRTB version 2.x materials.
-- ![Standards](image/dot_4.gif) [OpenRTB documentation](https://openrtb.github.io/OpenRTB/) - Browsable OpenRTB specification.
-- ![Standards](image/dot_5.gif) [OpenRTB GitHub specification](https://github.com/InteractiveAdvertisingBureau/openrtb) - OpenRTB source and documentation.
-- ![Standards](image/dot_1.gif) [SafeFrame](https://github.com/InteractiveAdvertisingBureau/SafeFrame) - Secure ad iframe API specification.
-- ![Standards](image/dot_2.gif) [Seller Domain Verification](https://github.com/InteractiveAdvertisingBureau/Seller-Domain-Verification) - Seller domain verification resources.
-- ![Standards](image/dot_3.gif) [Seller-Defined Audiences](https://github.com/InteractiveAdvertisingBureau/Seller-Defined-Audiences) - Standards for publisher-defined audience signals.
-- ![Standards](image/dot_4.gif) [SIMID](https://github.com/InteractiveAdvertisingBureau/SIMID) - Secure Interactive Media Interface Definition.
-- ![Standards](image/dot_5.gif) [Supply Chain Validation](https://github.com/InteractiveAdvertisingBureau/Supply-Chain-Validation) - Validation resources for the SupplyChain object.
-- ![Standards](image/dot_1.gif) [TCF GitHub](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework) - TCF specifications and resources.
-- ![Standards](image/dot_2.gif) [TCF resources](https://iabeurope.eu/tcf-supporting-resources/) - IAB Europe Transparency & Consent Framework materials.
-- ![Standards](image/dot_3.gif) [US Privacy](https://github.com/InteractiveAdvertisingBureau/USPrivacy) - US privacy specification resources.
-- ![Standards](image/dot_4.gif) [VAST](https://iabtechlab.com/standards/vast/) - Video Ad Serving Template specification.
-- ![Standards](image/dot_5.gif) [VAST 4.x](https://github.com/InteractiveAdvertisingBureau/VAST4.x) - VAST 4.x resources.
-- ![Standards](image/dot_1.gif) [VAST GitHub](https://github.com/InteractiveAdvertisingBureau/VAST) - VAST specification source.
-- ![Standards](image/dot_2.gif) [VAST Samples](https://github.com/InteractiveAdvertisingBureau/VAST-Samples) - Example VAST tags and creatives.
-- ![Standards](image/dot_3.gif) [VMAP](https://github.com/InteractiveAdvertisingBureau/VMAP) - Video Multiple Ad Playlist specification.
+- ![Standards](image/dot_2.gif) [Ads.txt crawler](https://github.com/InteractiveAdvertisingBureau/adstxtcrawler) - Crawler for ads.txt and related files.
+- ![Standards](image/dot_3.gif) [Consent String SDK Java](https://github.com/InteractiveAdvertisingBureau/Consent-String-SDK-Java) - Consent-string utilities for Java.
+- ![Standards](image/dot_4.gif) [Consent String SDK JS](https://github.com/InteractiveAdvertisingBureau/Consent-String-SDK-JS) - TCF consent-string utilities for JavaScript.
+- ![Standards](image/dot_5.gif) [Content Taxonomy (CATS)](https://github.com/InteractiveAdvertisingBureau/taxonomy) - Content Taxonomy and related classification resources.
+- ![Standards](image/dot_1.gif) [Curated Audiences (SDA)](https://iabtechlab.com/sda/) - Standards for publisher-defined audience signals.
+- ![Standards](image/dot_2.gif) [Global Privacy Platform](https://github.com/InteractiveAdvertisingBureau/Global-Privacy-Platform) - Framework for communicating privacy signals.
+- ![Standards](image/dot_3.gif) [IAB](https://www.iab.com/) - Digital advertising industry association.
+- ![Standards](image/dot_4.gif) [IAB Europe](https://iabeurope.eu/) - European digital advertising association.
+- ![Standards](image/dot_5.gif) [IAB TCF JavaScript SDK](https://github.com/InteractiveAdvertisingBureau/iabtcf-es) - JavaScript implementation of TCF APIs.
+- ![Standards](image/dot_1.gif) [IAB Tech Lab](https://iabtechlab.com/) - Technical standards and tools for digital advertising.
+- ![Standards](image/dot_2.gif) [IAB Tech Lab Compliance](https://compliance.iabtechlab.com/) - Compliance resources for industry specifications.
+- ![Standards](image/dot_3.gif) [IAB Tech Lab GPP](https://iabtechlab.com/standards/gpp/) - Global Privacy Platform overview and resources.
+- ![Standards](image/dot_4.gif) [IAB Tech Lab Tools](https://tools.iabtechlab.com/) - Validators and utilities for advertising standards.
+- ![Standards](image/dot_5.gif) [MRAID](https://iabtechlab.com/standards/mraid/) - Mobile Rich Media Ad Interface Definitions.
+- ![Standards](image/dot_1.gif) [Open Measurement JS Clients](https://github.com/InteractiveAdvertisingBureau/Open-Measurement-JSClients) - JavaScript OM SDK clients.
+- ![Standards](image/dot_2.gif) [Open Measurement SDK](https://iabtechlab.com/standards/open-measurement-sdk/) - Open measurement standard for ad verification.
+- ![Standards](image/dot_3.gif) [OpenRTB](https://iabtechlab.com/standards/openrtb/) - Real-time bidding protocol and specifications.
+- ![Standards](image/dot_4.gif) [OpenRTB 2.x](https://github.com/InteractiveAdvertisingBureau/openrtb2.x) - OpenRTB version 2.x materials.
+- ![Standards](image/dot_5.gif) [OpenRTB documentation](https://openrtb.github.io/OpenRTB/) - Browsable OpenRTB specification.
+- ![Standards](image/dot_1.gif) [OpenRTB GitHub specification](https://github.com/InteractiveAdvertisingBureau/openrtb) - OpenRTB source and documentation.
+- ![Standards](image/dot_2.gif) [SafeFrame](https://github.com/InteractiveAdvertisingBureau/SafeFrame) - Secure ad iframe API specification.
+- ![Standards](image/dot_3.gif) [SIMID](https://github.com/InteractiveAdvertisingBureau/SIMID) - Secure Interactive Media Interface Definition.
+- ![Standards](image/dot_4.gif) [Supply Chain Validation](https://github.com/InteractiveAdvertisingBureau/Supply-Chain-Validation) - Validation resources for the SupplyChain object.
+- ![Standards](image/dot_5.gif) [TCF GitHub](https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework) - TCF specifications and resources.
+- ![Standards](image/dot_1.gif) [TCF resources](https://iabeurope.eu/tcf-supporting-resources/) - IAB Europe Transparency & Consent Framework materials.
+- ![Standards](image/dot_2.gif) [US Privacy](https://github.com/InteractiveAdvertisingBureau/USPrivacy) - US privacy specification resources.
+- ![Standards](image/dot_3.gif) [VAST](https://iabtechlab.com/standards/vast/) - Video Ad Serving Template specification.
+- ![Standards](image/dot_4.gif) [VAST 4.x](https://github.com/InteractiveAdvertisingBureau/VAST4.x) - VAST 4.x resources.
+- ![Standards](image/dot_5.gif) [VAST GitHub](https://github.com/InteractiveAdvertisingBureau/VAST) - VAST specification source.
+- ![Standards](image/dot_1.gif) [VAST Samples](https://github.com/InteractiveAdvertisingBureau/VAST_Samples) - Example VAST tags and creatives.
+- ![Standards](image/dot_2.gif) [VMAP](https://github.com/InteractiveAdvertisingBureau/VMAP) - Video Multiple Ad Playlist specification.
 
 ## Header Bidding & Prebid
 
@@ -77,7 +76,6 @@ A curated directory of practical resources for advertising operations (AdOps), a
 - ![Header Bidding](image/dot_5.gif) [Prebid debugging guide](https://docs.prebid.org/debugging/debugging.html) - Troubleshooting common Prebid integrations.
 - ![Header Bidding](image/dot_1.gif) [Prebid documentation](https://docs.prebid.org/) - Documentation for Prebid products and integrations.
 - ![Header Bidding](image/dot_2.gif) [Prebid downloads](https://docs.prebid.org/Download.html) - Build and download Prebid.js bundles.
-- ![Header Bidding](image/dot_3.gif) [Prebid external JS template](https://github.com/prebid/prebid-js-external-js-template) - Template for external Prebid.js modules.
 - ![Header Bidding](image/dot_4.gif) [Prebid Mobile Android](https://github.com/prebid/prebid-mobile-android) - Prebid Mobile SDK for Android.
 - ![Header Bidding](image/dot_5.gif) [Prebid Mobile iOS](https://github.com/prebid/prebid-mobile-ios) - Prebid Mobile SDK for iOS.
 - ![Header Bidding](image/dot_1.gif) [Prebid Sales Agent](https://github.com/prebid/salesagent) - Prebid sales-agent project.
@@ -240,7 +238,6 @@ A curated directory of practical resources for advertising operations (AdOps), a
 - ![Video](image/dot_4.gif) [THEOplayer stream tester](https://demo.theoplayer.com/test-your-stream-with-statistics) - Test streams and inspect playback statistics.
 - ![Video](image/dot_5.gif) [Triton Digital](https://www.tritondigital.com/) - Audio streaming, podcasting, and advertising technology.
 - ![Video](image/dot_1.gif) [VAST Client JS](https://github.com/dailymotion/vast-client-js) - JavaScript VAST client library.
-- ![Video](image/dot_2.gif) [VAST Parser](https://github.com/dailymotion/vast-parser) - VAST XML parser for JavaScript.
 - ![Video](image/dot_3.gif) [VAST tag validator](https://www.ottengine.com/tools/vast-tag-validator) - Online VAST tag validation.
 - ![Video](image/dot_4.gif) [VDO.AI](https://www.vdo.ai/) - Video advertising and publisher monetization.
 - ![Video](image/dot_5.gif) [Video.js](https://videojs.com/) - Open-source HTML5 video player.
@@ -260,53 +257,49 @@ A curated directory of practical resources for advertising operations (AdOps), a
 - ![Supply Chain](image/dot_5.gif) [FIZZ Ads.txt Validator](https://fizzkit.net/tools/adstxt-validator/) - Validate ads.txt entries.
 - ![Supply Chain](image/dot_1.gif) [Sellers.guide](https://sellers.guide/) - Sellers.json and supply chain transparency tools.
 - ![Supply Chain](image/dot_2.gif) [Sellers.json](https://iabtechlab.com/sellers-json/) - Seller transparency specification resources.
-- ![Supply Chain](image/dot_3.gif) [SellersJSON.com](https://sellersjson.com/) - Sellers.json lookup and validation.
 - ![Supply Chain](image/dot_4.gif) [Well-known.dev](https://well-known.dev/) - Explore well-known files and web identity resources.
 
 ## Privacy, Consent & Identity
 
-- ![Privacy](image/dot_1.gif) [ATS.js](https://github.com/LiveRamp/ats.js) - LiveRamp ATS JavaScript integration.
-- ![Privacy](image/dot_2.gif) [CHIPS](https://privacysandbox.google.com/cookies/chips) - Partitioned cookies for embedded content across sites.
-- ![Privacy](image/dot_3.gif) [Consent String Decoder](https://www.consentstringdecoder.com/) - Decode IAB TCF consent strings.
-- ![Privacy](image/dot_4.gif) [Cookiebot](https://www.cookiebot.com/) - Cookie consent and compliance solution.
-- ![Privacy](image/dot_5.gif) [CookieConsent](https://github.com/orestbida/cookieconsent) - Lightweight cookie consent manager.
-- ![Privacy](image/dot_1.gif) [CookieYes](https://www.cookieyes.com/) - Cookie consent and privacy compliance.
-- ![Privacy](image/dot_2.gif) [Didomi](https://www.didomi.io/) - Consent and preference management platform.
-- ![Privacy](image/dot_3.gif) [Didomi Consent](https://github.com/Didomi/consent) - Consent SDK and open-source resources.
-- ![Privacy](image/dot_4.gif) [FedCM](https://privacysandbox.google.com/cookies/fedcm) - Browser API for federated identity flows.
-- ![Privacy](image/dot_5.gif) [Funding Choices](https://fundingchoices.google.com/) - Google publisher consent and funding tools.
-- ![Privacy](image/dot_1.gif) [Habu](https://www.habu.com/) - Data clean room technology.
-- ![Privacy](image/dot_2.gif) [IAB TCF](https://iabtcf.com/) - Community resources and consent-string tools.
-- ![Privacy](image/dot_3.gif) [ID5](https://www.id5.io/) - Identity solution for digital advertising.
-- ![Privacy](image/dot_4.gif) [ID5 API JS](https://github.com/id5io/id5-api.js) - JavaScript client for ID5 APIs.
-- ![Privacy](image/dot_5.gif) [InfoSum](https://www.infosum.com/) - Privacy-safe data collaboration.
-- ![Privacy](image/dot_1.gif) [iubenda](https://www.iubenda.com/) - Privacy compliance and consent tools.
-- ![Privacy](image/dot_2.gif) [Ketch](https://www.ketch.com/) - Privacy and data governance platform.
-- ![Privacy](image/dot_3.gif) [Klaro](https://github.com/kiprotect/klaro) - Open-source consent management solution.
-- ![Privacy](image/dot_4.gif) [LiveRamp ATS](https://liveramp.com/) - Identity and data collaboration technology.
-- ![Privacy](image/dot_5.gif) [Lotame](https://www.lotame.com/) - Data and identity solutions.
-- ![Privacy](image/dot_1.gif) [OneTrust](https://www.onetrust.com/) - Privacy, consent, and governance platform.
-- ![Privacy](image/dot_2.gif) [Osano](https://www.osano.com/) - Privacy management and consent solution.
-- ![Privacy](image/dot_3.gif) [Permutive](https://www.permutive.com/) - Publisher data and audience platform.
-- ![Privacy](image/dot_4.gif) [Private State Tokens](https://privacysandbox.google.com/protections/private-state-tokens) - Privacy-preserving tokens intended to help combat fraud and abuse.
-- ![Privacy](image/dot_5.gif) [Quantcast Choice](https://www.quantcast.com/products/choice-consent-management-platform/) - Consent management platform.
-- ![Privacy](image/dot_1.gif) [Snowflake](https://www.snowflake.com/) - Cloud data platform with data collaboration capabilities.
-- ![Privacy](image/dot_2.gif) [Sourcepoint](https://www.sourcepoint.com/) - Privacy consent and publisher monetization solutions.
-- ![Privacy](image/dot_3.gif) [TCF Global Vendor List](https://vendor-list.consensu.org/v3/vendor-list.json) - Official TCF vendor-list JSON endpoint.
-- ![Privacy](image/dot_4.gif) [TCF Vendor List](https://www.tcfvendorlist.com/) - Browse registered TCF vendors.
-- ![Privacy](image/dot_5.gif) [Transcend](https://transcend.io/) - Privacy infrastructure and data rights management.
-- ![Privacy](image/dot_1.gif) [TransUnion](https://www.transunion.com/) - Identity and audience data solutions.
-- ![Privacy](image/dot_2.gif) [UID2 Core](https://github.com/UnifiedID2/uid2-core) - Core UID2 libraries.
-- ![Privacy](image/dot_3.gif) [UID2 Operator](https://github.com/UnifiedID2/uid2-operator) - UID2 operator implementation.
-- ![Privacy](image/dot_4.gif) [UID2 web integrations](https://github.com/UnifiedID2/uid2-web-integrations) - Browser-side UID2 integration examples.
-- ![Privacy](image/dot_5.gif) [UniConsent](https://www.uniconsent.com/) - Consent management for publishers.
-- ![Privacy](image/dot_1.gif) [Unified ID 2.0](https://unifiedid.com/) - Industry identity framework and documentation.
-- ![Privacy](image/dot_2.gif) [Usercentrics](https://www.usercentrics.com/) - Consent management platform.
+- ![Privacy](image/dot_1.gif) [CHIPS](https://privacysandbox.google.com/cookies/chips) - Partitioned cookies for embedded content across sites.
+- ![Privacy](image/dot_2.gif) [Cookiebot](https://www.cookiebot.com/) - Cookie consent and compliance solution.
+- ![Privacy](image/dot_3.gif) [CookieConsent](https://github.com/orestbida/cookieconsent) - Lightweight cookie consent manager.
+- ![Privacy](image/dot_4.gif) [CookieYes](https://www.cookieyes.com/) - Cookie consent and privacy compliance.
+- ![Privacy](image/dot_5.gif) [Didomi](https://www.didomi.io/) - Consent and preference management platform.
+- ![Privacy](image/dot_1.gif) [FedCM](https://privacysandbox.google.com/cookies/fedcm) - Browser API for federated identity flows.
+- ![Privacy](image/dot_2.gif) [Funding Choices](https://fundingchoices.google.com/) - Google publisher consent and funding tools.
+- ![Privacy](image/dot_3.gif) [Habu](https://www.habu.com/) - Data clean room technology.
+- ![Privacy](image/dot_4.gif) [IAB GPP / TC String Codec](https://iabgpp.com/) - Encode and decode IAB GPP and TCF consent strings.
+- ![Privacy](image/dot_5.gif) [IAB TCF](https://iabtcf.com/) - Community resources and consent-string tools.
+- ![Privacy](image/dot_1.gif) [ID5](https://www.id5.io/) - Identity solution for digital advertising.
+- ![Privacy](image/dot_2.gif) [ID5 API JS](https://github.com/id5io/id5-api.js) - JavaScript client for ID5 APIs.
+- ![Privacy](image/dot_3.gif) [InfoSum](https://www.infosum.com/) - Privacy-safe data collaboration.
+- ![Privacy](image/dot_4.gif) [iubenda](https://www.iubenda.com/) - Privacy compliance and consent tools.
+- ![Privacy](image/dot_5.gif) [Ketch](https://www.ketch.com/) - Privacy and data governance platform.
+- ![Privacy](image/dot_1.gif) [Klaro](https://github.com/kiprotect/klaro) - Open-source consent management solution.
+- ![Privacy](image/dot_2.gif) [LiveRamp ATS](https://liveramp.com/) - Identity and data collaboration technology.
+- ![Privacy](image/dot_3.gif) [Lotame](https://www.lotame.com/) - Data and identity solutions.
+- ![Privacy](image/dot_4.gif) [OneTrust](https://www.onetrust.com/) - Privacy, consent, and governance platform.
+- ![Privacy](image/dot_5.gif) [Osano](https://www.osano.com/) - Privacy management and consent solution.
+- ![Privacy](image/dot_1.gif) [Permutive](https://www.permutive.com/) - Publisher data and audience platform.
+- ![Privacy](image/dot_2.gif) [Private State Tokens](https://privacysandbox.google.com/protections/private-state-tokens) - Privacy-preserving tokens intended to help combat fraud and abuse.
+- ![Privacy](image/dot_3.gif) [Quantcast Choice](https://www.quantcast.com/products/choice-consent-management-platform/) - Consent management platform.
+- ![Privacy](image/dot_4.gif) [Snowflake](https://www.snowflake.com/) - Cloud data platform with data collaboration capabilities.
+- ![Privacy](image/dot_5.gif) [Sourcepoint](https://www.sourcepoint.com/) - Privacy consent and publisher monetization solutions.
+- ![Privacy](image/dot_1.gif) [TCF Global Vendor List](https://vendor-list.consensu.org/v3/vendor-list.json) - Official TCF vendor-list JSON endpoint.
+- ![Privacy](image/dot_2.gif) [TCF Vendor List](https://iabeurope.eu/vendor-list-tcf/) - Browse registered TCF vendors.
+- ![Privacy](image/dot_3.gif) [Transcend](https://transcend.io/) - Privacy infrastructure and data rights management.
+- ![Privacy](image/dot_4.gif) [TransUnion](https://www.transunion.com/) - Identity and audience data solutions.
+- ![Privacy](image/dot_5.gif) [UID2 Core](https://github.com/IABTechLab/uid2-core) - Core UID2 libraries.
+- ![Privacy](image/dot_1.gif) [UID2 Operator](https://github.com/IABTechLab/uid2-operator) - UID2 operator implementation.
+- ![Privacy](image/dot_2.gif) [UID2 web integrations](https://github.com/IABTechLab/uid2-web-integrations) - Browser-side UID2 integration examples.
+- ![Privacy](image/dot_3.gif) [UniConsent](https://www.uniconsent.com/) - Consent management for publishers.
+- ![Privacy](image/dot_4.gif) [Unified ID 2.0](https://unifiedid.com/) - Industry identity framework and documentation.
+- ![Privacy](image/dot_5.gif) [Usercentrics](https://www.usercentrics.com/) - Consent management platform.
 
 ## Ad Quality, Verification & Fraud Prevention
 
 - ![Verification](image/dot_1.gif) [Ad Lightning](https://www.adlightning.com/) - Ad quality and creative scanning.
-- ![Verification](image/dot_2.gif) [Ad verification guidelines](https://github.com/InteractiveAdvertisingBureau/Ad-Verification-Guidelines) - IAB guidelines for ad verification.
 - ![Verification](image/dot_3.gif) [AdSecure](https://www.adsecure.com/) - Ad quality scanning and creative verification.
 - ![Verification](image/dot_4.gif) [Anura](https://www.anura.io/) - Ad fraud detection and traffic quality analysis.
 - ![Verification](image/dot_5.gif) [AppsFlyer Protect360](https://www.appsflyer.com/products/protect360/) - Mobile ad fraud protection.
@@ -400,7 +393,6 @@ A curated directory of practical resources for advertising operations (AdOps), a
 - ![Creative](image/dot_1.gif) [FFmpeg](https://ffmpeg.org/) - Multimedia processing toolkit for video and audio.
 - ![Creative](image/dot_2.gif) [Flashtalking](https://www.flashtalking.com/) - Ad serving, creative, and measurement technology.
 - ![Creative](image/dot_3.gif) [Google Ads Lighthouse plugin](https://github.com/googleads/publisher-ads-lighthouse-plugin) - Audit publisher ad performance with Lighthouse.
-- ![Creative](image/dot_4.gif) [Google Tag Generator](https://taggenerator.google.com/) - Create Google advertising and measurement tags.
 - ![Creative](image/dot_5.gif) [Google Web Designer](https://webdesigner.withgoogle.com/) - Create HTML5 ads and other web content.
 - ![Creative](image/dot_1.gif) [Google Web Designer cached libraries](https://s0.2mdn.net/ads/studio/cached_libs/index.html) - Google-hosted libraries for ad creatives.
 - ![Creative](image/dot_2.gif) [GSAP](https://gsap.com/) - JavaScript animation toolkit used for rich-media creatives.
@@ -409,37 +401,32 @@ A curated directory of practical resources for advertising operations (AdOps), a
 - ![Creative](image/dot_5.gif) [Innovid](https://www.innovid.com/) - CTV advertising, delivery, and measurement.
 - ![Creative](image/dot_1.gif) [Jivox](https://www.jivox.com/) - Personalized digital advertising and creative automation.
 - ![Creative](image/dot_2.gif) [Rich Media Gallery Tools](https://richmediagallery.com/tools/) - Rich-media creative resources and utilities.
-- ![Creative](image/dot_3.gif) [SpotX Tag Generator](https://www.spotx.tv/tag-generator/) - Generate video advertising tags.
 - ![Creative](image/dot_4.gif) [Squoosh](https://squoosh.app/) - Browser-based image compression and conversion.
 - ![Creative](image/dot_5.gif) [TinyPNG](https://tinypng.com/) - Compress PNG and JPEG assets.
 
 ## Browser Extensions & AdOps Debugging
 
 - ![Extensions](image/dot_1.gif) [Ad Network Logger](https://chromewebstore.google.com/detail/ad-network-logger/obplbeempbagbggnobgechlhpldmlfll) - Monitor advertising network requests.
-- ![Extensions](image/dot_2.gif) [Adswerve Datalayer Inspector](https://chromewebstore.google.com/detail/adswerve-datalayer-inspec/kmcbdogdandhihllalknlcjfpdjcleom) - Inspect data layer events.
-- ![Extensions](image/dot_3.gif) [Adtrace GAM Inspector](https://github.com/adops-tool/adtrace-gam-inspector) - Inspect Google Ad Manager setup and page ad calls.
-- ![Extensions](image/dot_4.gif) [AdWizard](https://chromewebstore.google.com/detail/adwizard/kndnhcfdajkaickocacghchhpieogbjh) - Browser-based ad operations helper.
-- ![Extensions](image/dot_5.gif) [Clear Cache](https://chromewebstore.google.com/detail/clear-cache/cppjkneekbjaeellbfkmgnhonkkjfpdn) - Clear browser cache during implementation testing.
-- ![Extensions](image/dot_1.gif) [CMP Validator](https://chromewebstore.google.com/detail/cmp-validator/ffhhjklgcfabkpholngojpkijlafjooc) - Check consent management platform signals.
-- ![Extensions](image/dot_2.gif) [Dataslayer](https://chromewebstore.google.com/detail/dataslayer/ikbablmmjldhamhcldjjigniffkkjgpo) - Debug data layers and marketing tags.
-- ![Extensions](image/dot_3.gif) [DFP/GPT Inspector](https://chromewebstore.google.com/detail/dfp-gpt-inspector/kfahnbecdeidpfobpbpklnbclgbfjkhm) - Inspect Google Publisher Tag requests and ad slots.
-- ![Extensions](image/dot_4.gif) [EditThisCookie](https://chromewebstore.google.com/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg) - Inspect and manage browser cookies.
+- ![Extensions](image/dot_2.gif) [adOps X-Ray](https://chromewebstore.google.com/detail/programmatic-ad-scanner/cbimifbdmnobhmnpclljjnnaggcialof) - Inspect page ad slots and identify common ad-tech signals, including GPT, Prebid.js, and Amazon APS.
+- ![Extensions](image/dot_3.gif) [Adswerve Datalayer Inspector](https://chromewebstore.google.com/detail/adswerve-datalayer-inspec/kmcbdogdandhihllalknlcjfpdjcleom) - Inspect data layer events.
+- ![Extensions](image/dot_4.gif) [Adtrace GAM Inspector](https://github.com/adops-tool/adtrace-gam-inspector) - Inspect Google Ad Manager setup and page ad calls.
+- ![Extensions](image/dot_5.gif) [AdWizard](https://chromewebstore.google.com/detail/adwizard/kndnhcfdajkaickocacghchhpieogbjh) - Browser-based ad operations helper.
+- ![Extensions](image/dot_1.gif) [Clear Cache](https://chromewebstore.google.com/detail/clear-cache/cppjkneekbjaeellbfkmgnhonkkjfpdn) - Clear browser cache during implementation testing.
+- ![Extensions](image/dot_2.gif) [CMP Validator](https://chromewebstore.google.com/detail/cmp-validator/ffhhjklgcfabkpholngojpkijlafjooc) - Check consent management platform signals.
+- ![Extensions](image/dot_3.gif) [Cookie-Editor](https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm) - Inspect and manage browser cookies.
+- ![Extensions](image/dot_4.gif) [Dataslayer](https://chromewebstore.google.com/detail/dataslayer/ikbablmmjldhamhcldjjigniffkkjgpo) - Debug data layers and marketing tags.
 - ![Extensions](image/dot_5.gif) [Ghostery](https://chromewebstore.google.com/detail/ghostery-tracker-ad-block/mlomiejdfkolichcflejclcbmpeaniij) - Inspect and manage trackers and advertising scripts.
 - ![Extensions](image/dot_1.gif) [Google Tag Assistant](https://chromewebstore.google.com/detail/tag-assistant-companion/jmekfmbnaedfebfnmakmokmlfpblbfdm) - Debug Google tags and measurement setup.
 - ![Extensions](image/dot_2.gif) [Header Bidding Inspector](https://chromewebstore.google.com/detail/header-bidding-inspector/jbkfcjnhdhckflpdjblpcjbegohphdnp) - Inspect header bidding activity in pages.
-- ![Extensions](image/dot_3.gif) [HeaderBid Expert extension](https://chromewebstore.google.com/detail/headerbid-expert/cgfkddgbnfplidbfapbbnclbkkbchdhg) - Tools for diagnosing header bidding.
-- ![Extensions](image/dot_4.gif) [JSON Viewer](https://chromewebstore.google.com/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh) - Format JSON responses in the browser.
-- ![Extensions](image/dot_5.gif) [Lines Checker: ads.txt/app-ads.txt/sellers.json](https://chromewebstore.google.com/detail/lines-checker-adstxtapp-a/gekfhoohhgameebogjaaocnbbdildejb) - Validate ads.txt and app-ads.txt files, find errors and duplicates, and check seller IDs against sellers.json.
-- ![Extensions](image/dot_1.gif) [Mass Ads / App Ads Checker](https://chromewebstore.google.com/detail/mass-ads-app-ads-checker/gmojbjflbpipemmhpbhpfhegkmoeobmg) - Check ads.txt and app-ads.txt at scale.
-- ![Extensions](image/dot_2.gif) [ModHeader](https://chromewebstore.google.com/detail/modheader-modify-http-hea/idgpnmonknjnojddfkpgkljpfnnfcklj) - Modify HTTP request headers for testing.
-- ![Extensions](image/dot_3.gif) [Omnibug](https://chromewebstore.google.com/detail/omnibug/bknpehncffejahipecakbfkomebjmokl) - Inspect analytics and marketing requests.
-- ![Extensions](image/dot_4.gif) [Programmatic ad-scanner](https://chromewebstore.google.com/detail/programmatic-ad-scanner/cbimifbdmnobhmnpclljjnnaggcialof) - Inspect page ad slots and identify common ad-tech signals, including GPT, Prebid.js, and Amazon APS.
-- ![Extensions](image/dot_5.gif) [PubGuru Ad Inspector](https://chromewebstore.google.com/detail/pubguru-ad-inspector/nnoilpdinmjmdfpkdkbbecddgmflbdce) - Inspect ads and publisher configuration.
-- ![Extensions](image/dot_1.gif) [Requestly](https://chromewebstore.google.com/detail/requestly-intercept-modif/mdnleldcmiljblolnjhpnblkcekpdkpa) - Intercept and modify web requests.
-- ![Extensions](image/dot_2.gif) [Sellers.json Inspector](https://chromewebstore.google.com/detail/sellersjson-inspector/neboddkndfhfoeoolmdfgeelajmpdkfm) - Parse and inspect sellers.json and buyers.json files, with seller-ID checks against publisher ads.txt files.
-- ![Extensions](image/dot_3.gif) [TCF Auditor](https://chromewebstore.google.com/detail/tcf-auditor/jcniohndgobdkelnbpbaogfhabjjkbkb) - Inspect consent framework behavior.
-- ![Extensions](image/dot_4.gif) [User-Agent Switcher](https://chromewebstore.google.com/detail/user-agent-switcher-for-c/djflhoibgkdhkhhcedjiklpkjnoahfmg) - Test delivery behavior with alternate user agents.
-- ![Extensions](image/dot_5.gif) [Web Vitals extension](https://chromewebstore.google.com/detail/web-vitals/ahfhijdlegdabablpippeagghigmibma) - Measure Core Web Vitals in the browser.
+- ![Extensions](image/dot_3.gif) [JSON Viewer](https://chromewebstore.google.com/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh) - Format JSON responses in the browser.
+- ![Extensions](image/dot_4.gif) [Lines Checker: ads.txt/app-ads.txt/sellers.json](https://chromewebstore.google.com/detail/lines-checker-adstxtapp-a/gekfhoohhgameebogjaaocnbbdildejb) - Validate ads.txt and app-ads.txt files, find errors and duplicates, and check seller IDs against sellers.json.
+- ![Extensions](image/dot_5.gif) [Mass Ads / App Ads Checker](https://chromewebstore.google.com/detail/mass-ads-app-ads-checker/gmojbjflbpipemmhpbhpfhegkmoeobmg) - Check ads.txt and app-ads.txt at scale.
+- ![Extensions](image/dot_1.gif) [Omnibug](https://chromewebstore.google.com/detail/omnibug/bknpehncffejahipecakbfkomebjmokl) - Inspect analytics and marketing requests.
+- ![Extensions](image/dot_2.gif) [PubGuru Ad Inspector](https://chromewebstore.google.com/detail/pubguru-ad-inspector/nnoilpdinmjmdfpkdkbbkajejflbkoma) - Inspect ads and publisher configuration.
+- ![Extensions](image/dot_3.gif) [Requestly](https://chromewebstore.google.com/detail/requestly-intercept-modif/mdnleldcmiljblolnjhpnblkcekpdkpa) - Intercept and modify web requests.
+- ![Extensions](image/dot_4.gif) [Sellers.json Inspector](https://chromewebstore.google.com/detail/sellersjson-inspector/neboddkndfhfoeoolmdfgeelajmpdkfm) - Parse and inspect sellers.json and buyers.json files, with seller-ID checks against publisher ads.txt files.
+- ![Extensions](image/dot_5.gif) [TCF Auditor](https://chromewebstore.google.com/detail/tcf-auditor/jcniohndgobdkelnbpbaogfhabjjkbkb) - Inspect consent framework behavior.
+- ![Extensions](image/dot_1.gif) [User-Agent Switcher](https://chromewebstore.google.com/detail/user-agent-switcher-for-c/djflhoibgkdhkhhcedjiklpkjnoahfmg) - Test delivery behavior with alternate user agents.
 
 ## Developer Tooling & Testing
 
@@ -453,9 +440,9 @@ A curated directory of practical resources for advertising operations (AdOps), a
 - ![Developer Tools](image/dot_3.gif) [Fiddler](https://www.telerik.com/fiddler) - Web debugging proxy.
 - ![Developer Tools](image/dot_4.gif) [FIZZ OpenRTB Inspector](https://fizzkit.net/tools/openrtb-inspector/) - Inspect OpenRTB bid requests and responses.
 - ![Developer Tools](image/dot_5.gif) [Google Ads .NET](https://github.com/googleads/googleads-dotnet-lib) - .NET client library for Google Ads API.
-- ![Developer Tools](image/dot_1.gif) [Google Ads Java](https://github.com/googleads/google-ads-java) - Java client library for Google Ads API.
-- ![Developer Tools](image/dot_2.gif) [Google Ads MCP](https://github.com/googleads/google-ads-mcp) - Model Context Protocol server for Google Ads.
-- ![Developer Tools](image/dot_3.gif) [Google Ads Node](https://github.com/googleads/google-ads-node) - Node.js client library for Google Ads API.
+- ![Developer Tools](image/dot_1.gif) [Google Ads API client libraries](https://developers.google.com/google-ads/api/docs/client-libs) - Official client libraries for the Google Ads API.
+- ![Developer Tools](image/dot_2.gif) [Google Ads Java](https://github.com/googleads/google-ads-java) - Java client library for Google Ads API.
+- ![Developer Tools](image/dot_3.gif) [Google Ads MCP](https://github.com/googleads/google-ads-mcp) - Model Context Protocol server for Google Ads.
 - ![Developer Tools](image/dot_4.gif) [Google Ads PHP](https://github.com/googleads/googleads-php-lib) - PHP client library for Google Ads API.
 - ![Developer Tools](image/dot_5.gif) [Google Ads Python](https://github.com/googleads/google-ads-python) - Python client library for Google Ads API.
 - ![Developer Tools](image/dot_1.gif) [Google Ads Ruby](https://github.com/googleads/google-ads-ruby) - Ruby client library for Google Ads API.
@@ -476,38 +463,31 @@ A curated directory of practical resources for advertising operations (AdOps), a
 - ![Developer Tools](image/dot_1.gif) [mitmproxy](https://mitmproxy.org/) - Open-source interactive HTTPS proxy.
 - ![Developer Tools](image/dot_2.gif) [mxmCherry/openrtb](https://github.com/mxmCherry/openrtb) - OpenRTB Go library.
 - ![Developer Tools](image/dot_3.gif) [ngrok](https://ngrok.com/) - Secure tunnels to local development services.
-- ![Developer Tools](image/dot_4.gif) [Open Measurement Android](https://github.com/googleads/open-measurement-android) - Open Measurement SDK for Android.
-- ![Developer Tools](image/dot_5.gif) [Open Measurement iOS](https://github.com/googleads/open-measurement-ios) - Open Measurement SDK for iOS.
-- ![Developer Tools](image/dot_1.gif) [OpenRTB Go](https://github.com/metabrainz/openrtb-go) - Go implementation of OpenRTB structures.
-- ![Developer Tools](image/dot_2.gif) [PageSpeed Insights](https://pagespeed.web.dev/) - Analyze page performance and Core Web Vitals.
-- ![Developer Tools](image/dot_3.gif) [Postman](https://www.postman.com/) - API development and testing workspace.
-- ![Developer Tools](image/dot_4.gif) [Proxyman](https://proxyman.io/) - HTTP debugging proxy for developers.
-- ![Developer Tools](image/dot_5.gif) [Regex101](https://regex101.com/) - Build and test regular expressions.
-- ![Developer Tools](image/dot_1.gif) [ReqBin](https://reqbin.com/) - Online HTTP request testing.
-- ![Developer Tools](image/dot_2.gif) [Sauce Labs](https://saucelabs.com/) - Cloud testing for web and mobile applications.
-- ![Developer Tools](image/dot_3.gif) [SpeedCurve](https://speedcurve.com/) - Web performance monitoring.
-- ![Developer Tools](image/dot_4.gif) [URL Decoder](https://www.urldecoder.org/) - Decode and encode URL components.
-- ![Developer Tools](image/dot_5.gif) [Vungle OpenRTB](https://github.com/Vungle/openrtb) - OpenRTB-related project from Vungle.
-- ![Developer Tools](image/dot_1.gif) [Webhook.site](https://webhook.site/) - Inspect incoming HTTP requests and webhooks.
-- ![Developer Tools](image/dot_2.gif) [WebPageTest](https://www.webpagetest.org/) - Website performance testing.
-- ![Developer Tools](image/dot_3.gif) [Wireshark](https://www.wireshark.org/) - Network protocol analyzer.
+- ![Developer Tools](image/dot_4.gif) [Open Measurement Android](https://github.com/InteractiveAdvertisingBureau/Open-Measurement-ReferenceApp-Android) - Reference app for the Open Measurement SDK on Android.
+- ![Developer Tools](image/dot_5.gif) [Open Measurement iOS](https://github.com/InteractiveAdvertisingBureau/Open-Measurement-ReferenceApp-iOS) - Reference app for the Open Measurement SDK on iOS.
+- ![Developer Tools](image/dot_1.gif) [PageSpeed Insights](https://pagespeed.web.dev/) - Analyze page performance and Core Web Vitals.
+- ![Developer Tools](image/dot_2.gif) [Postman](https://www.postman.com/) - API development and testing workspace.
+- ![Developer Tools](image/dot_3.gif) [Proxyman](https://proxyman.io/) - HTTP debugging proxy for developers.
+- ![Developer Tools](image/dot_4.gif) [Regex101](https://regex101.com/) - Build and test regular expressions.
+- ![Developer Tools](image/dot_5.gif) [ReqBin](https://reqbin.com/) - Online HTTP request testing.
+- ![Developer Tools](image/dot_1.gif) [Sauce Labs](https://saucelabs.com/) - Cloud testing for web and mobile applications.
+- ![Developer Tools](image/dot_2.gif) [SpeedCurve](https://speedcurve.com/) - Web performance monitoring.
+- ![Developer Tools](image/dot_3.gif) [URL Decoder](https://www.urldecoder.org/) - Decode and encode URL components.
+- ![Developer Tools](image/dot_4.gif) [Vungle OpenRTB](https://github.com/Vungle/openrtb) - OpenRTB-related project from Vungle.
+- ![Developer Tools](image/dot_5.gif) [Webhook.site](https://webhook.site/) - Inspect incoming HTTP requests and webhooks.
+- ![Developer Tools](image/dot_1.gif) [WebPageTest](https://www.webpagetest.org/) - Website performance testing.
+- ![Developer Tools](image/dot_2.gif) [Wireshark](https://www.wireshark.org/) - Network protocol analyzer.
 
 ## Open-Source Ad Servers, RTB & Publisher Engineering
 
 - ![Open Source](image/dot_1.gif) [Ad Ops repositories by adops-tool](https://github.com/adops-tool) - Open-source utilities and projects for ad operations.
 - ![Open Source](image/dot_2.gif) [Ad Server Platform list](https://github.com/ishandutta2007/Awesome-Ad-Serving-Platform) - Community-maintained directory of ad serving platforms.
-- ![Open Source](image/dot_3.gif) [Ad server: Wikia Ad Engine](https://github.com/Wikia/ad-engine) - Publisher advertising codebase from Fandom/Wikia.
-- ![Open Source](image/dot_4.gif) [Automattic ad-tracker](https://github.com/Automattic/ad-tracker) - Advertising tracking utility from Automattic.
-- ![Open Source](image/dot_5.gif) [Awesome AdTech](https://github.com/ClearcodeHQ/awesome-adtech) - Curated links to ad-tech concepts, products, and projects.
+- ![Open Source](image/dot_5.gif) [Awesome AdTech](https://github.com/AirGrid/awesome-adtech) - Curated links to ad-tech concepts, products, and projects.
 - ![Open Source](image/dot_1.gif) [Guardian commercial core](https://github.com/guardian/commercial-core) - The Guardian's commercial frontend components.
-- ![Open Source](image/dot_2.gif) [NYTimes DFP Ads](https://github.com/nytimes/dfp-ads) - Google ad tag integration utilities from The New York Times.
-- ![Open Source](image/dot_3.gif) [OpenRTB for Unity](https://github.com/unity3d-kr/openrtb) - OpenRTB-related Unity project.
 - ![Open Source](image/dot_4.gif) [RTBKit](https://github.com/rtbkit/rtbkit) - Open-source real-time bidding framework for building and deploying bidders.
-- ![Open Source](image/dot_5.gif) [Spring Media advertising config](https://github.com/spring-media/advertising-config) - Advertising configuration project from Spring Media.
 - ![Open Source](image/dot_1.gif) [SSPServer](https://github.com/sspserver/sspserver) - Open-source supply-side platform project.
-- ![Open Source](image/dot_2.gif) [Vanilla RTB](https://github.com/vanilla-rtb/vrtb) - Open-source real-time bidding project.
-- ![Open Source](image/dot_3.gif) [Vox Concert Ad Manager](https://github.com/voxmedia/concert-ad-manager) - Ad management application from Vox Media.
-- ![Open Source](image/dot_4.gif) [XRTB](https://github.com/xrtb/XRTB) - Open-source real-time bidding project.
+- ![Open Source](image/dot_2.gif) [Vanilla RTB](https://github.com/vanilla-rtb/vanilla-rtb) - Open-source real-time bidding project.
+- ![Open Source](image/dot_4.gif) [XRTB](https://github.com/benmfaul/XRTB) - Open-source real-time bidding project.
 
 ## Mobile Advertising, App Monetization & Gaming
 
