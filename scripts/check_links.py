@@ -1,196 +1,1107 @@
 #!/usr/bin/env python3
-"""Link checker for Awesome AdOps.
+"""Dead-link checker for Awesome AdOps.
 
-Checks every link in README.md and reports unreachable URLs.
+Checks inline, HTML, and reference links across Markdown files, including local
+paths, heading anchors, HTTP(S) URLs, and Chrome Web Store extension listings.
+Uses only the Python standard library so it runs locally and in CI without
+installing dependencies.
 
-Special handling:
-  * Chrome Web Store listings are verified through the Chrome update service
-    (clients2.google.com/service/update2), which returns a redirect for a
-    published item and an error page for an item that was removed/delisted.
-    This catches the common "This product is unavailable" case.
-  * 401/403/405/429/503 responses are reported as warnings instead of
-    failures, because they are frequently bot-protection rather than rot.
+Examples:
+    python3 scripts/check_links.py                       # full check of all .md files
+    python3 scripts/check_links.py --local-only          # files + anchors only, no network
+    python3 scripts/check_links.py --changed-only --base origin/main
+    python3 scripts/check_links.py --format markdown --output link-report.md
 
-Usage:
-    python3 scripts/check_links.py                 # check README.md
-    python3 scripts/check_links.py --timeout 15    # slower networks
-    python3 scripts/check_links.py --json out.json # machine-readable output
+Classification:
+    ok          HTTP 2xx (and published in Chrome Web Store when applicable)
+    redirect    HTTP 2xx after a non-trivial redirect to a new path/domain
+    blocked     HTTP 401/403/405/429/999 — bot protection, not a dead link
+    dead        HTTP 404/410/451, delisted Chrome extension, or sinkholed DNS
+    error       timeout, DNS failure, TLS error, or 5xx after retries
+    allowlisted skipped on purpose, see .github/link-check-allowlist.txt
 
-Exit code is 1 when at least one link is broken, 0 otherwise.
+Exit codes: 0 = passed, 1 = dead/broken links (or blocked links with
+--fail-on-blocked), 2 = usage error.
 """
 
 from __future__ import annotations
 
 import argparse
 import concurrent.futures
+import ipaddress
 import json
 import os
+import random
 import re
 import socket
 import ssl
+import subprocess
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Iterable, Iterator, Optional
 
-README = "README.md"
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_FILES = ["README.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md"]
+DEFAULT_ALLOWLIST = ".github/link-check-allowlist.txt"
 USER_AGENT = (
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
-    "(KHTML, like Gecko) Chrome/130.0 Safari/537.36 AwesomeAdOpsLinkCheck/1.0"
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
 )
-WARN_STATUSES = {401, 403, 405, 418, 429, 503}
+REQUEST_HEADERS = {
+    "User-Agent": USER_AGENT,
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+}
+
+STATUS_OK = "ok"
+STATUS_REDIRECT = "redirect"
+STATUS_BLOCKED = "blocked"
+STATUS_DEAD = "dead"
+STATUS_ERROR = "error"
+STATUS_ALLOWLISTED = "allowlisted"
+STATUS_SKIPPED = "skipped"
+
+# Servers that reject or mishandle HEAD often answer GET cleanly.
+HEAD_FALLBACK_STATUSES = {400, 401, 403, 404, 405, 406, 409, 410, 411, 429, 500, 501, 502, 503, 999}
+BOT_PROTECTION_STATUSES = {401, 402, 403, 405, 406, 409, 418, 429, 999}
+DEAD_STATUSES = {404, 410, 451}
+
 CWS_HOSTS = {"chromewebstore.google.com", "chrome.google.com"}
 CWS_ID_RE = re.compile(r"/detail(?:/[^/]+)?/([a-p]{32})")
-LINK_RE = re.compile(r"\[[^\]]*\]\((https?://[^)\s]+)\)")
+
+HEADING_RE = re.compile(r"^ {0,3}(#{1,6})[ \t]+(.+?)[ \t]*#*[ \t]*$")
+CODE_FENCE_RE = re.compile(r"^ {0,3}(```|~~~)")
+HTML_ATTR_RE = re.compile(
+    r"<(?:img|a)\b[^>]*\b(?:src|href)\s*=\s*[\"'](?P<url>[^\"']+)[\"']",
+    re.IGNORECASE,
+)
+REF_LINK_RE = re.compile(r"^ {0,3}\[[^\]\n]+\]:\s*<?(?P<url>\S+?)>?(?:\s+\"[^\"]*\")?\s*$")
+UNESCAPE_RE = re.compile(r"\\([\\`*_{}\[\]()#+\-.!|>~])")
+
+STATUS_ICONS = {
+    STATUS_OK: "✓",
+    STATUS_REDIRECT: "↪",
+    STATUS_BLOCKED: "⚠",
+    STATUS_DEAD: "✖",
+    STATUS_ERROR: "✖",
+    STATUS_ALLOWLISTED: "·",
+    STATUS_SKIPPED: "·",
+}
+
+ORDER = {
+    STATUS_DEAD: 0,
+    STATUS_ERROR: 1,
+    STATUS_BLOCKED: 2,
+    STATUS_REDIRECT: 3,
+    STATUS_OK: 4,
+    STATUS_ALLOWLISTED: 5,
+    STATUS_SKIPPED: 6,
+}
 
 
-def read_links(path: str) -> list[str]:
-    with open(path, encoding="utf-8") as fh:
-        text = fh.read()
-    return sorted({m.group(1).rstrip(".,;") for m in LINK_RE.finditer(text)})
+# --------------------------------------------------------------------------- #
+# Data model
+# --------------------------------------------------------------------------- #
+
+
+@dataclass(frozen=True)
+class Location:
+    file: str
+    line: int
+
+
+@dataclass
+class LinkTarget:
+    url: str
+    locations: list[Location] = field(default_factory=list)
+
+    @property
+    def display(self) -> str:
+        first = self.locations[0]
+        suffix = f" (+{len(self.locations) - 1} more)" if len(self.locations) > 1 else ""
+        return f"{first.file}:{first.line}{suffix}"
+
+
+@dataclass
+class CheckResult:
+    target: LinkTarget
+    status: str
+    http_status: Optional[int] = None
+    detail: str = ""
+    final_url: Optional[str] = None
+    attempts: int = 0
+
+    @property
+    def url(self) -> str:
+        return self.target.url
+
+
+@dataclass(frozen=True)
+class RawLink:
+    target: str
+    line: int
+
+
+# --------------------------------------------------------------------------- #
+# Markdown extraction
+# --------------------------------------------------------------------------- #
+
+
+def slugify(title: str) -> str:
+    """Reproduce GitHub's heading anchor slug algorithm."""
+
+    text = re.sub(r"`([^`]*)`", r"\1", title)
+    text = UNESCAPE_RE.sub(r"\1", text).strip().lower()
+    text = re.sub(r"[^\w\- ]", "", text, flags=re.UNICODE)
+    return text.replace(" ", "-")
+
+
+def extract_anchors(lines: list[str]) -> set[str]:
+    """Return all GitHub heading anchors in ``lines`` (ignoring code fences)."""
+
+    anchors: set[str] = set()
+    counts: dict[str, int] = {}
+    in_fence = False
+
+    for line in lines:
+        if CODE_FENCE_RE.match(line):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        match = HEADING_RE.match(line)
+        if not match:
+            continue
+        base = slugify(match.group(2).strip())
+        if not base:
+            continue
+        seen = counts.get(base, 0)
+        counts[base] = seen + 1
+        anchors.add(base if seen == 0 else f"{base}-{seen}")
+
+    return anchors
+
+
+def iter_inline_links(line: str) -> Iterator[str]:
+    """Yield inline Markdown link/image targets, including nested badge links."""
+
+    position = 0
+    length = len(line)
+    while position < length:
+        marker = line.find("](", position)
+        if marker == -1:
+            return
+
+        depth = 0
+        start = -1
+        index = marker - 1
+        while index >= 0:
+            char = line[index]
+            if char == "]":
+                depth += 1
+            elif char == "[":
+                if depth == 0:
+                    start = index
+                    break
+                depth -= 1
+            index -= 1
+
+        cursor = marker + 2
+        while cursor < length and line[cursor] in " \t":
+            cursor += 1
+
+        if start != -1 and cursor < length:
+            if line[cursor] == "<":
+                closing = line.find(">", cursor)
+                if closing != -1:
+                    target = line[cursor + 1 : closing].strip()
+                    end = line.find(")", closing)
+                    if target and end != -1:
+                        yield target
+                        position = end + 1
+                        continue
+            else:
+                target_chars: list[str] = []
+                paren_depth = 0
+                index = cursor
+                while index < length:
+                    char = line[index]
+                    if char in " \t":
+                        break
+                    if char == "(":
+                        paren_depth += 1
+                    elif char == ")":
+                        if paren_depth == 0:
+                            break
+                        paren_depth -= 1
+                    target_chars.append(char)
+                    index += 1
+                target = "".join(target_chars).strip()
+                end = line.find(")", index)
+                if target and target != "#" and end != -1:
+                    yield target
+                    position = end + 1
+                    continue
+
+        position = marker + 2
+
+
+def extract_links(lines: list[str]) -> Iterator[RawLink]:
+    """Yield every inline, HTML, and reference link outside fenced code blocks."""
+
+    in_fence = False
+    for index, line in enumerate(lines):
+        if CODE_FENCE_RE.match(line):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        line_no = index + 1
+        for target in iter_inline_links(line):
+            yield RawLink(target, line_no)
+        for match in HTML_ATTR_RE.finditer(line):
+            yield RawLink(match.group("url").strip(), line_no)
+        reference = REF_LINK_RE.match(line)
+        if reference:
+            yield RawLink(reference.group("url").strip(), line_no)
+
+
+def url_without_fragment(url: str) -> str:
+    parts = urllib.parse.urlsplit(url)
+    return parts._replace(fragment="").geturl()
+
+
+# --------------------------------------------------------------------------- #
+# Allowlist
+# --------------------------------------------------------------------------- #
+
+
+@dataclass(frozen=True)
+class AllowlistEntry:
+    host: str
+    path_prefix: str
+    reason: str
+
+
+def load_allowlist(path: Path) -> list[AllowlistEntry]:
+    """Parse ``domain[/prefix] # reason`` lines from the allowlist file."""
+
+    if not path.exists():
+        return []
+
+    entries: list[AllowlistEntry] = []
+    for raw_line in path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#"):
+            continue
+        pieces = re.split(r"\s+#\s*", line, maxsplit=1)
+        value = pieces[0].strip()
+        reason = pieces[1].strip() if len(pieces) > 1 else ""
+        if not value:
+            continue
+        if "://" in value:
+            parts = urllib.parse.urlsplit(value)
+            host = (parts.hostname or "").lower()
+            prefix = parts.path or ""
+        else:
+            host, _, prefix = value.partition("/")
+            host = host.lower()
+            prefix = f"/{prefix}" if prefix else ""
+        host = host.removeprefix("*.")
+        if host:
+            entries.append(AllowlistEntry(host=host, path_prefix=prefix, reason=reason.strip()))
+    return entries
+
+
+def match_allowlist(url: str, entries: Iterable[AllowlistEntry]) -> Optional[AllowlistEntry]:
+    parts = urllib.parse.urlsplit(url)
+    host = (parts.hostname or "").lower()
+    path = parts.path or "/"
+    for entry in entries:
+        if host == entry.host or host.endswith("." + entry.host):
+            if not entry.path_prefix or path.startswith(entry.path_prefix):
+                return entry
+    return None
+
+
+# --------------------------------------------------------------------------- #
+# Link collection
+# --------------------------------------------------------------------------- #
+
+
+def collect_targets(files: Iterable[Path]) -> tuple[dict[str, LinkTarget], list[CheckResult]]:
+    """Group HTTP(S) links by URL and validate local files/anchors immediately."""
+
+    targets: dict[str, LinkTarget] = {}
+    local_problems: list[CheckResult] = []
+    anchor_cache: dict[Path, set[str]] = {}
+
+    def anchors_for(file_path: Path) -> set[str]:
+        resolved = file_path.resolve()
+        if resolved not in anchor_cache:
+            try:
+                text = resolved.read_text(encoding="utf-8")
+                anchor_cache[resolved] = extract_anchors(text.splitlines())
+            except (OSError, UnicodeDecodeError):
+                anchor_cache[resolved] = set()
+        return anchor_cache[resolved]
+
+    for path in files:
+        if not path.exists():
+            continue
+        lines = path.read_text(encoding="utf-8").splitlines()
+        anchor_cache[path.resolve()] = extract_anchors(lines)
+
+        for link in extract_links(lines):
+            raw = link.target.strip().strip("<>")
+            if not raw or raw.startswith(("mailto:", "tel:", "data:", "javascript:")):
+                continue
+
+            parts = urllib.parse.urlsplit(raw)
+            location = Location(str(path), link.line)
+
+            if parts.scheme in ("http", "https"):
+                if not parts.netloc:
+                    continue
+                key = url_without_fragment(raw)
+                targets.setdefault(key, LinkTarget(url=key)).locations.append(location)
+                continue
+
+            if parts.scheme and parts.scheme not in ("", "file"):
+                continue
+
+            local_path = (path.parent / urllib.parse.unquote(parts.path)).resolve()
+            fragment = parts.fragment
+
+            if parts.path and not local_path.exists():
+                local_problems.append(
+                    CheckResult(
+                        target=LinkTarget(url=raw, locations=[location]),
+                        status=STATUS_DEAD,
+                        detail=f"local file `{parts.path}` does not exist",
+                    )
+                )
+                continue
+
+            if fragment:
+                target_file = local_path if parts.path else path.resolve()
+                if fragment not in anchors_for(target_file):
+                    local_problems.append(
+                        CheckResult(
+                            target=LinkTarget(url=raw, locations=[location]),
+                            status=STATUS_DEAD,
+                            detail=f"anchor `#{fragment}` does not exist",
+                        )
+                    )
+
+    return targets, local_problems
+
+
+def changed_line_numbers(files: Iterable[Path], base: str) -> Optional[dict[str, set[int]]]:
+    """Return 1-based line numbers added/modified since ``base``, or ``None``."""
+
+    changed: dict[str, set[int]] = {}
+    for path in files:
+        relative = os.path.relpath(Path(path).resolve(), REPO_ROOT)
+        command = [
+            "git",
+            "-C",
+            str(REPO_ROOT),
+            "diff",
+            "--unified=0",
+            "--no-color",
+            f"{base}...HEAD",
+            "--",
+            relative,
+        ]
+        try:
+            completed = subprocess.run(
+                command, capture_output=True, text=True, check=False, timeout=60
+            )
+        except (OSError, subprocess.SubprocessError):
+            return None
+        if completed.returncode != 0:
+            return None
+
+        line_numbers: set[int] = set()
+        new_line: Optional[int] = None
+        for line in completed.stdout.splitlines():
+            hunk = re.match(r"^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@", line)
+            if hunk:
+                new_line = int(hunk.group(1))
+                continue
+            if new_line is None:
+                continue
+            if line.startswith("+"):
+                line_numbers.add(new_line)
+                new_line += 1
+            elif line.startswith("-"):
+                continue
+            elif line.startswith(" "):
+                new_line += 1
+        changed[str(path)] = line_numbers
+
+    return changed
+
+
+# --------------------------------------------------------------------------- #
+# HTTP & Chrome Web Store checking
+# --------------------------------------------------------------------------- #
 
 
 class _NoRedirect(urllib.request.HTTPRedirectHandler):
-    """Return 3xx responses instead of following them."""
+    """Return 3xx responses directly without following redirects."""
 
     def redirect_request(self, req, fp, code, msg, headers, newurl):  # noqa: D102
         return None
 
 
-def _request(url: str, timeout: float, follow: bool) -> tuple[int | None, str]:
-    ctx = ssl.create_default_context()
-    handlers = [urllib.request.HTTPSHandler(context=ctx)]
-    if not follow:
+def _is_sinkholed_domain(url: str) -> bool:
+    """True when a public domain name resolves exclusively to loopback/0.0.0.0."""
+
+    host = (urllib.parse.urlsplit(url).hostname or "").lower()
+    if not host or host == "localhost" or host.endswith(".invalid"):
+        return False
+    try:
+        ipaddress.ip_address(host)
+        return False  # Literal IPs (e.g. 127.0.0.1 in unit tests) are intentional.
+    except ValueError:
+        pass
+
+    try:
+        infos = socket.getaddrinfo(host, None)
+    except OSError:
+        return False
+
+    addrs = []
+    for info in infos:
+        raw_ip = info[4][0].split("%")[0]
+        try:
+            addrs.append(ipaddress.ip_address(raw_ip))
+        except ValueError:
+            continue
+    return bool(addrs) and all(addr.is_loopback or addr.is_unspecified for addr in addrs)
+
+
+def _request(
+    url: str,
+    method: str,
+    timeout: float,
+    insecure: bool,
+    *,
+    follow_redirects: bool = True,
+) -> tuple[int, str]:
+    context = ssl.create_default_context()
+    if insecure:
+        context.check_hostname = False
+        context.verify_mode = ssl.CERT_NONE
+
+    handlers: list[urllib.request.BaseHandler] = [urllib.request.HTTPSHandler(context=context)]
+    if not follow_redirects:
         handlers.append(_NoRedirect())
     opener = urllib.request.build_opener(*handlers)
-    req = urllib.request.Request(
-        url,
-        method="GET",
-        headers={
-            "User-Agent": USER_AGENT,
-            "Accept": "text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8",
-            "Accept-Language": "en-US,en;q=0.9",
-        },
-    )
-    try:
-        with opener.open(req, timeout=timeout) as resp:
-            return resp.status, ""
-    except urllib.error.HTTPError as err:
-        return err.code, err.reason or ""
-    except urllib.error.URLError as err:
-        return None, str(getattr(err, "reason", err))
-    except (socket.timeout, TimeoutError):
-        return None, "timeout"
-    except Exception as err:  # noqa: BLE001 - report, never crash
-        return None, f"{type(err).__name__}: {err}"
+
+    request = urllib.request.Request(url, method=method, headers=REQUEST_HEADERS)
+    with opener.open(request, timeout=timeout) as response:
+        final_url = response.geturl()
+        status = int(response.status)
+        response.close()
+        return status, final_url
 
 
-def check_webstore(url: str, timeout: float) -> tuple[str, int | None, str]:
-    """Return (state, status, detail) for a Chrome Web Store URL."""
+def _check_webstore(
+    url: str,
+    *,
+    timeout: float,
+    retries: int,
+    insecure: bool,
+    sleep,
+) -> Optional[CheckResult]:
+    """Verify a Chrome Web Store extension via Google's update service."""
+
     match = CWS_ID_RE.search(url)
     if not match:
-        status, detail = _request(url, timeout, follow=True)
-        if status and status < 400:
-            return "ok", status, ""
-        return ("broken" if status and status >= 400 else "broken"), status, detail or "invalid store URL"
+        return None
 
     ext_id = match.group(1)
     probe = (
         "https://clients2.google.com/service/update2/crx"
-        "?response=redirect&prodversion=130.0&acceptformat=crx2,crx3"
+        "?response=redirect&prodversion=131.0.0.0&acceptformat=crx2,crx3"
         f"&x=id%3D{ext_id}%26uc"
     )
-    status, detail = _request(probe, timeout, follow=False)
-    if status in (301, 302, 303, 307, 308):
-        return "ok", status, ""
-    if status in (204, 200):
-        # No update offered but the item is known to the service.
-        return "ok", status, ""
-    if status == 404:
-        return "broken", status, "removed from the store (unavailable)"
-    if status in WARN_STATUSES:
-        return "warn", status, detail
-    if status is None:
-        return "error", None, detail
-    return "broken", status, detail
+
+    attempts = 0
+    last_status: Optional[int] = None
+    last_error = ""
+
+    for attempt in range(retries + 1):
+        attempts = attempt + 1
+        try:
+            status, _ = _request(probe, "GET", timeout, insecure, follow_redirects=False)
+        except urllib.error.HTTPError as err:
+            status = int(err.code)
+            last_error = f"HTTP {status}"
+        except Exception as exc:  # noqa: BLE001
+            status = 0
+            last_error = f"{type(exc).__name__}: {exc}"
+
+        last_status = status
+        if status in (200, 204, 301, 302, 303, 307, 308):
+            return CheckResult(
+                target=LinkTarget(url=url),
+                status=STATUS_OK,
+                http_status=status,
+                attempts=attempts,
+            )
+        if status == 404:
+            return CheckResult(
+                target=LinkTarget(url=url),
+                status=STATUS_DEAD,
+                http_status=404,
+                detail="HTTP 404 (removed from Chrome Web Store)",
+                attempts=attempts,
+            )
+        if status in BOT_PROTECTION_STATUSES:
+            return CheckResult(
+                target=LinkTarget(url=url),
+                status=STATUS_BLOCKED,
+                http_status=status,
+                detail=f"HTTP {status} (bot protection)",
+                attempts=attempts,
+            )
+        if attempt < retries:
+            sleep(min(8.0, 0.75 * (2**attempt)) + random.uniform(0, 0.25))
+
+    detail = last_error or (f"HTTP {last_status}" if last_status else "no response")
+    return CheckResult(
+        target=LinkTarget(url=url),
+        status=STATUS_ERROR,
+        http_status=last_status or None,
+        detail=detail,
+        attempts=attempts,
+    )
 
 
-def check_url(url: str, timeout: float, retries: int = 2) -> dict:
-    host = urllib.parse.urlsplit(url).netloc.lower()
+def check_http(
+    url: str,
+    *,
+    timeout: float = 15.0,
+    retries: int = 2,
+    insecure: bool = False,
+    sleep=time.sleep,
+) -> CheckResult:
+    """Request a URL, retrying transient failures. Never raises."""
+
+    host = (urllib.parse.urlsplit(url).hostname or "").lower()
     if host in CWS_HOSTS:
-        state, status, detail = check_webstore(url, timeout)
+        cws_result = _check_webstore(
+            url, timeout=timeout, retries=retries, insecure=insecure, sleep=sleep
+        )
+        if cws_result is not None:
+            return cws_result
+
+    if _is_sinkholed_domain(url):
+        return CheckResult(
+            target=LinkTarget(url=url),
+            status=STATUS_DEAD,
+            detail="DNS resolves to loopback/unspecified address (defunct domain)",
+            attempts=1,
+        )
+
+    attempts = 0
+    last_status: Optional[int] = None
+    last_error = ""
+
+    for attempt in range(retries + 1):
+        attempts = attempt + 1
+        final_url: Optional[str] = None
+        try:
+            status, final_url = _request(url, "HEAD", timeout, insecure)
+            if status in HEAD_FALLBACK_STATUSES:
+                status, final_url = _request(url, "GET", timeout, insecure)
+        except urllib.error.HTTPError as error:
+            status = int(error.code)
+            final_url = error.geturl()
+            last_error = f"HTTP {status}"
+            if status in HEAD_FALLBACK_STATUSES:
+                try:
+                    status, final_url = _request(url, "GET", timeout, insecure)
+                    last_error = ""
+                except urllib.error.HTTPError as get_error:
+                    status = int(get_error.code)
+                    final_url = get_error.geturl()
+                    last_error = f"HTTP {status}"
+                except Exception as get_exc:  # noqa: BLE001
+                    last_status = status
+                    last_error = f"{type(get_exc).__name__}: {get_exc}"
+                    status = 0
+        except Exception as exc:  # noqa: BLE001
+            status = 0
+            final_url = None
+            last_error = f"{type(exc).__name__}: {exc}"
+
+        last_status = status
+        kind = classify_status(status) if status else STATUS_ERROR
+
+        if kind in (STATUS_OK, STATUS_REDIRECT):
+            moved = bool(final_url) and not is_trivial_redirect(url, final_url)
+            return CheckResult(
+                target=LinkTarget(url=url),
+                status=STATUS_REDIRECT if moved else STATUS_OK,
+                http_status=status,
+                detail=f"redirects to {final_url}" if moved else "",
+                final_url=final_url,
+                attempts=attempts,
+            )
+        if kind == STATUS_DEAD:
+            return CheckResult(
+                target=LinkTarget(url=url),
+                status=STATUS_DEAD,
+                http_status=status,
+                detail=last_error or f"HTTP {status}",
+                final_url=final_url,
+                attempts=attempts,
+            )
+        if kind == STATUS_BLOCKED and status == 403:
+            return CheckResult(
+                target=LinkTarget(url=url),
+                status=STATUS_BLOCKED,
+                http_status=status,
+                detail=f"HTTP {status} (bot protection)",
+                final_url=final_url,
+                attempts=attempts,
+            )
+
+        if attempt < retries:
+            sleep(min(8.0, 0.75 * (2**attempt)) + random.uniform(0, 0.25))
+
+    kind = classify_status(last_status) if last_status else STATUS_ERROR
+    if kind == STATUS_BLOCKED:
+        detail = f"HTTP {last_status} (bot protection)"
     else:
-        state, status, detail = "error", None, "unreachable"
-        for attempt in range(retries + 1):
-            status, detail = _request(url, timeout, follow=True)
-            if status is None:
-                state = "error"
-                continue
-            if status < 400:
-                state = "ok"
-            elif status in WARN_STATUSES:
-                state = "warn"
-            else:
-                state = "broken"
-            break
-    return {"url": url, "state": state, "status": status, "detail": detail}
+        detail = last_error or (f"HTTP {last_status}" if last_status else "no response")
+    return CheckResult(
+        target=LinkTarget(url=url),
+        status=kind if kind in {STATUS_BLOCKED, STATUS_DEAD, STATUS_ERROR} else STATUS_ERROR,
+        http_status=last_status or None,
+        detail=detail,
+        attempts=attempts,
+    )
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description="Check links in README.md")
-    parser.add_argument("--file", default=README)
-    parser.add_argument("--timeout", type=float, default=20.0)
-    parser.add_argument("--workers", type=int, default=16)
-    parser.add_argument("--retries", type=int, default=2)
-    parser.add_argument("--json", dest="json_path")
-    args = parser.parse_args()
+def classify_status(status: int) -> str:
+    if 200 <= status < 300:
+        return STATUS_OK
+    if 300 <= status < 400:
+        return STATUS_REDIRECT
+    if status in BOT_PROTECTION_STATUSES:
+        return STATUS_BLOCKED
+    if status in DEAD_STATUSES or 400 <= status < 500:
+        return STATUS_DEAD
+    return STATUS_ERROR
 
-    if not os.path.exists(args.file):
-        print(f"error: {args.file} not found", file=sys.stderr)
-        return 2
 
-    links = read_links(args.file)
-    print(f"Checking {len(links)} unique links from {args.file} ...\n", flush=True)
+def is_trivial_redirect(original: str, final: str) -> bool:
+    """True when the only difference is www, trailing slash, or http->https."""
 
-    results = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
+    if not final:
+        return False
+    first, second = urllib.parse.urlsplit(original), urllib.parse.urlsplit(final)
+
+    def host(parts) -> str:
+        return (parts.hostname or "").lower().removeprefix("www.")
+
+    def path(parts) -> str:
+        return (parts.path or "/").rstrip("/") or "/"
+
+    return (
+        host(first) == host(second)
+        and path(first) == path(second)
+        and first.query == second.query
+    )
+
+
+def run_checks(
+    targets: Iterable[LinkTarget],
+    *,
+    jobs: int,
+    timeout: float,
+    retries: int,
+    insecure: bool,
+    allowlist: list[AllowlistEntry],
+) -> list[CheckResult]:
+    results: list[CheckResult] = []
+    pending: list[LinkTarget] = []
+
+    for target in targets:
+        entry = match_allowlist(target.url, allowlist)
+        if entry is not None:
+            reason = entry.reason or "host is known to block automated checks"
+            results.append(
+                CheckResult(
+                    target=target,
+                    status=STATUS_ALLOWLISTED,
+                    detail=reason,
+                )
+            )
+        else:
+            pending.append(target)
+
+    if not pending:
+        return results
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, jobs)) as pool:
         futures = {
-            pool.submit(check_url, url, args.timeout, args.retries): url for url in links
+            pool.submit(
+                check_http, target.url, timeout=timeout, retries=retries, insecure=insecure
+            ): target
+            for target in pending
         }
         for future in concurrent.futures.as_completed(futures):
-            results.append(future.result())
+            target = futures[future]
+            try:
+                result = future.result()
+            except Exception as exc:  # noqa: BLE001
+                result = CheckResult(
+                    target=target, status=STATUS_ERROR, detail=f"{type(exc).__name__}: {exc}"
+                )
+            result.target = target
+            results.append(result)
 
-    order = {"broken": 0, "error": 1, "warn": 2, "ok": 3}
-    results.sort(key=lambda r: (order[r["state"]], r["url"]))
+    results.sort(key=lambda item: (ORDER.get(item.status, 9), item.url))
+    return results
 
-    broken = [r for r in results if r["state"] in ("broken", "error")]
-    warned = [r for r in results if r["state"] == "warn"]
 
-    if broken:
-        print("BROKEN LINKS\n")
-        for r in broken:
-            status = r["status"] if r["status"] is not None else "no response"
-            print(f"  [{status}] {r['url']}")
-            if r["detail"]:
-                print(f"          {r['detail']}")
-        print()
+# --------------------------------------------------------------------------- #
+# Reporting
+# --------------------------------------------------------------------------- #
 
-    if warned:
-        print("WARNINGS (likely bot protection, verify manually)\n")
-        for r in warned:
-            print(f"  [{r['status']}] {r['url']}")
-        print()
 
-    ok = len(results) - len(broken) - len(warned)
-    print(f"Summary: {len(results)} links checked, {ok} ok, {len(warned)} warnings, {len(broken)} broken")
+def count_by_status(results: Iterable[CheckResult]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for result in results:
+        counts[result.status] = counts.get(result.status, 0) + 1
+    return counts
 
-    if args.json_path:
-        with open(args.json_path, "w", encoding="utf-8") as fh:
-            json.dump(results, fh, indent=2)
-        print(f"JSON report written to {args.json_path}")
 
-    return 1 if broken else 0
+def result_line(result: CheckResult) -> str:
+    icon = STATUS_ICONS.get(result.status, "?")
+    detail = f" — {result.detail}" if result.detail else ""
+    return f"{icon} {result.target.display}  {result.url}{detail}"
+
+
+def render_text(results: list[CheckResult], files: list[str], elapsed: float) -> str:
+    counts = count_by_status(results)
+    total = len(results)
+    lines = [
+        f"Checked {total} links in {', '.join(files)} in {elapsed:.1f}s",
+        "",
+    ]
+
+    sections = [
+        (STATUS_DEAD, "Dead links"),
+        (STATUS_ERROR, "Unreachable links"),
+        (STATUS_BLOCKED, "Blocked by bot protection (not counted as failures)"),
+        (STATUS_REDIRECT, "Redirects"),
+    ]
+    for status, title in sections:
+        subset = [result for result in results if result.status == status]
+        if not subset:
+            continue
+        lines.append(f"{title} ({len(subset)}):")
+        for result in subset:
+            lines.append(f"  {result_line(result)}")
+        lines.append("")
+
+    summary = " ".join(f"{counts[status]} {status}" for status in ORDER if status in counts)
+    lines.append(
+        f"Summary: {summary or 'no links'} — {'FAILED' if has_failures(results) else 'passed'}"
+    )
+    return "\n".join(lines)
+
+
+def render_markdown(results: list[CheckResult], files: list[str], elapsed: float) -> str:
+    counts = count_by_status(results)
+    total = len(results)
+    lines = [
+        "## Link check",
+        "",
+        f"Checked **{total}** unique links in {', '.join(f'`{name}`' for name in files)} "
+        f"in {elapsed:.1f}s.",
+    ]
+
+    if counts:
+        lines += ["", "| Status | Count |", "| --- | --- |"]
+        for status in ORDER:
+            if status in counts:
+                lines.append(f"| {STATUS_ICONS.get(status, '')} {status} | {counts[status]} |")
+
+    failures = [result for result in results if result.status in (STATUS_DEAD, STATUS_ERROR)]
+    if failures:
+        lines += [
+            "",
+            "### Links that need fixing",
+            "",
+            "| File | URL | Result |",
+            "| --- | --- | --- |",
+        ]
+        for result in failures:
+            lines.append(
+                f"| {result.target.display} | <{result.url}> | {result.detail or result.status} |"
+            )
+
+    blocked = [result for result in results if result.status == STATUS_BLOCKED]
+    if blocked:
+        lines += [
+            "",
+            "<details><summary>Blocked by bot protection</summary>",
+            "",
+            "| File | URL | HTTP |",
+            "| --- | --- | --- |",
+        ]
+        for result in blocked:
+            lines.append(f"| {result.target.display} | <{result.url}> | {result.http_status} |")
+        lines += ["", "</details>"]
+
+    return "\n".join(lines)
+
+
+def render_json(results: list[CheckResult]) -> str:
+    payload = {
+        "summary": count_by_status(results),
+        "failed": has_failures(results),
+        "results": [
+            {
+                "url": result.url,
+                "status": result.status,
+                "http_status": result.http_status,
+                "detail": result.detail,
+                "final_url": result.final_url,
+                "locations": [
+                    {"file": location.file, "line": location.line}
+                    for location in result.target.locations
+                ],
+            }
+            for result in results
+        ],
+    }
+    return json.dumps(payload, indent=2, ensure_ascii=False)
+
+
+def emit_annotations(results: Iterable[CheckResult]) -> None:
+    for result in results:
+        if result.status not in (STATUS_DEAD, STATUS_ERROR):
+            continue
+        message = f"{result.url} — {result.detail or result.status}".replace("%", "%25")
+        for location in result.target.locations:
+            print(
+                f"::error file={location.file},line={location.line},"
+                f"title=dead link::{message}"
+            )
+
+
+def has_failures(
+    results: Iterable[CheckResult],
+    fail_on_blocked: bool = False,
+    fail_on_error: bool = True,
+) -> bool:
+    for result in results:
+        if result.status == STATUS_DEAD:
+            return True
+        if result.status == STATUS_ERROR and fail_on_error:
+            return True
+        if result.status == STATUS_BLOCKED and fail_on_blocked:
+            return True
+    return False
+
+
+# --------------------------------------------------------------------------- #
+# CLI
+# --------------------------------------------------------------------------- #
+
+
+def resolve_base(explicit: Optional[str]) -> Optional[str]:
+    if explicit:
+        return explicit
+    for candidate in ("origin/main", "main", "HEAD~1"):
+        try:
+            completed = subprocess.run(
+                ["git", "-C", str(REPO_ROOT), "rev-parse", "--verify", "--quiet", candidate],
+                capture_output=True,
+                text=True,
+                check=False,
+                timeout=30,
+            )
+        except (OSError, subprocess.SubprocessError):
+            return None
+        if completed.returncode == 0:
+            return candidate
+    return None
+
+
+def run(argv: Optional[Iterable[str]] = None) -> int:
+    parser = argparse.ArgumentParser(
+        description="Check that every link in the Markdown files works.",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=__doc__,
+    )
+    parser.add_argument(
+        "files",
+        nargs="*",
+        help=f"Markdown files (default: {' '.join(DEFAULT_FILES)})",
+    )
+    parser.add_argument("--jobs", type=int, default=12, help="parallel requests (default: 12)")
+    parser.add_argument(
+        "--timeout", type=float, default=15.0, help="per-request timeout in seconds"
+    )
+    parser.add_argument("--retries", type=int, default=2, help="retries for timeouts and 5xx")
+    parser.add_argument(
+        "--allowlist",
+        default=DEFAULT_ALLOWLIST,
+        help=f"file with hosts that block bots (default: {DEFAULT_ALLOWLIST})",
+    )
+    parser.add_argument("--no-allowlist", action="store_true", help="ignore the allowlist file")
+    parser.add_argument(
+        "--local-only",
+        action="store_true",
+        help="skip network checks (files and anchors only)",
+    )
+    parser.add_argument(
+        "--changed-only",
+        action="store_true",
+        help="only check links on lines added/modified since --base (fast PR mode)",
+    )
+    parser.add_argument("--base", default=None, help="git ref to diff against for --changed-only")
+    parser.add_argument(
+        "--format",
+        choices=["text", "markdown", "json"],
+        default="text",
+        help="report format (default: text)",
+    )
+    parser.add_argument("--output", default=None, help="also write the report to this file")
+    parser.add_argument(
+        "--github-annotations",
+        action="store_true",
+        help="emit ::error annotations for broken links",
+    )
+    parser.add_argument(
+        "--github-summary",
+        action="store_true",
+        help="append the markdown report to $GITHUB_STEP_SUMMARY",
+    )
+    parser.add_argument(
+        "--fail-on-blocked",
+        action="store_true",
+        help="fail when a host blocks the checker",
+    )
+    parser.add_argument(
+        "--no-fail-on-error",
+        action="store_true",
+        help="do not fail on timeouts/5xx (only on real 404s)",
+    )
+    parser.add_argument("--insecure", action="store_true", help="skip TLS verification")
+    parser.add_argument("--quiet", action="store_true", help="only print the summary")
+    args = parser.parse_args(list(argv) if argv is not None else None)
+
+    files = [Path(name) for name in (args.files or DEFAULT_FILES)]
+    files = [path for path in files if path.exists()]
+    if not files:
+        print("error: no input files found", file=sys.stderr)
+        return 2
+
+    started = time.time()
+    targets, local_problems = collect_targets(files)
+
+    if args.changed_only:
+        base = resolve_base(args.base)
+        changed = changed_line_numbers(files, base) if base else None
+        if changed is None:
+            print(
+                "warning: could not diff against the base ref; checking every link",
+                file=sys.stderr,
+            )
+        else:
+            targets = {
+                url: target
+                for url, target in targets.items()
+                if any(
+                    location.line in changed.get(location.file, set())
+                    for location in target.locations
+                )
+            }
+            local_problems = [
+                problem
+                for problem in local_problems
+                if any(
+                    location.line in changed.get(location.file, set())
+                    for location in problem.target.locations
+                )
+            ]
+
+    allowlist: list[AllowlistEntry] = []
+    if not args.no_allowlist:
+        allowlist = load_allowlist(Path(args.allowlist))
+
+    if args.local_only:
+        results = [
+            CheckResult(
+                target=target,
+                status=STATUS_SKIPPED,
+                detail="network checks disabled (--local-only)",
+            )
+            for target in targets.values()
+        ]
+    else:
+        results = run_checks(
+            targets.values(),
+            jobs=args.jobs,
+            timeout=args.timeout,
+            retries=args.retries,
+            insecure=args.insecure,
+            allowlist=allowlist,
+        )
+
+    results.extend(local_problems)
+    results.sort(key=lambda item: (ORDER.get(item.status, 9), item.url))
+    elapsed = time.time() - started
+
+    file_names = [str(path) for path in files]
+    if args.format == "json":
+        report = render_json(results)
+    elif args.format == "markdown":
+        report = render_markdown(results, file_names, elapsed)
+    else:
+        report = render_text(results, file_names, elapsed)
+
+    if args.quiet and args.format == "text":
+        report = report.splitlines()[-1]
+
+    print(report)
+
+    if args.output:
+        Path(args.output).write_text(report + "\n", encoding="utf-8")
+
+    if args.github_summary:
+        summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
+        if summary_path:
+            with open(summary_path, "a", encoding="utf-8") as handle:
+                handle.write(render_markdown(results, file_names, elapsed) + "\n")
+
+    if args.github_annotations:
+        emit_annotations(results)
+
+    failed = has_failures(
+        results,
+        fail_on_blocked=args.fail_on_blocked,
+        fail_on_error=not args.no_fail_on_error,
+    )
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    sys.exit(run())
