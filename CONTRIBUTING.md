@@ -76,7 +76,17 @@ Prioritize the usefulness and accuracy of the list over its size; a resource sho
 Links rot. Before opening a pull request, run the checker locally:
 
 ```bash
+python3 scripts/check_links.py --changed-only --base origin/main
+```
+
+Or run a full check across all Markdown files:
+
+```bash
 python3 scripts/check_links.py
 ```
 
-It verifies every link in `README.md` and also detects Chrome Web Store listings that were removed from the store (`This product is unavailable`). The same script runs in CI on pull requests and weekly on a schedule (`.github/workflows/link-check.yml`), so stale entries get caught even when nobody edits the list.
+The checker validates local file paths, heading anchors, HTTP(S) URLs, and Chrome Web Store listings (detecting extensions that were removed or delisted).
+
+- **Pull requests** only test links on lines added or modified by the PR (`--changed-only`), so pre-existing link rot never blocks an unrelated contribution.
+- **Weekly scheduled runs** (`.github/workflows/link-check.yml`) check the entire directory every Monday and publish a Markdown summary and `link-report` artifact.
+- **Bot-protected hosts** (`403`, `429`, login walls) are classified as `blocked` without failing the build. Hosts that consistently reject datacenter traffic can be listed with a reason in [`.github/link-check-allowlist.txt`](.github/link-check-allowlist.txt) — never use the allowlist to hide a real `404`.

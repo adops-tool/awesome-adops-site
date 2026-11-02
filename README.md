@@ -51,7 +51,7 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Standards](image/dot_4.gif) [IAB Europe](https://iabeurope.eu/) - European digital advertising association.  
 ![Standards](image/dot_5.gif) [IAB TCF JavaScript SDK](https://github.com/InteractiveAdvertisingBureau/iabtcf-es) - JavaScript implementation of TCF APIs.  
 ![Standards](image/dot_1.gif) [IAB Tech Lab](https://iabtechlab.com/) - Technical standards and tools for digital advertising.  
-![Standards](image/dot_2.gif) [IAB Tech Lab Compliance](https://compliance.iabtechlab.com/) - Compliance resources for industry specifications.  
+![Standards](image/dot_2.gif) [IAB Tech Lab Compliance](https://iabtechlab.com/compliance-programs/) - Compliance resources for industry specifications.  
 ![Standards](image/dot_3.gif) [IAB Tech Lab GPP](https://iabtechlab.com/standards/gpp/) - Global Privacy Platform overview and resources.  
 ![Standards](image/dot_4.gif) [IAB Tech Lab Tools](https://tools.iabtechlab.com/) - Validators and utilities for advertising standards.  
 ![Standards](image/dot_5.gif) [MRAID](https://iabtechlab.com/standards/mraid/) - Mobile Rich Media Ad Interface Definitions.  
@@ -83,20 +83,20 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Header Bidding](image/dot_4.gif) [Prebid currency file](https://github.com/prebid/currency-file) - Currency rates used by Prebid.js.  
 ![Header Bidding](image/dot_5.gif) [Prebid debugging guide](https://docs.prebid.org/debugging/debugging.html) - Troubleshooting common Prebid integrations.  
 ![Header Bidding](image/dot_1.gif) [Prebid documentation](https://docs.prebid.org/) - Documentation for Prebid products and integrations.  
-![Header Bidding](image/dot_2.gif) [Prebid downloads](https://docs.prebid.org/Download.html) - Build and download Prebid.js bundles.  
+![Header Bidding](image/dot_2.gif) [Prebid downloads](https://docs.prebid.org/download.html) - Build and download Prebid.js bundles.  
+![Header Bidding](image/dot_3.gif) [Prebid Line Item Manager](https://docs.prebid.org/tools/line-item-manager.html) - CLI tool for creating Prebid ad server line items.  
 ![Header Bidding](image/dot_4.gif) [Prebid Mobile Android](https://github.com/prebid/prebid-mobile-android) - Prebid Mobile SDK for Android.  
 ![Header Bidding](image/dot_5.gif) [Prebid Mobile iOS](https://github.com/prebid/prebid-mobile-ios) - Prebid Mobile SDK for iOS.  
 ![Header Bidding](image/dot_1.gif) [Prebid Sales Agent](https://github.com/prebid/salesagent) - Prebid sales-agent project.  
 ![Header Bidding](image/dot_2.gif) [Prebid Server](https://github.com/prebid/prebid-server) - Open-source server-side header bidding solution.  
 ![Header Bidding](image/dot_3.gif) [Prebid Server bidders](https://docs.prebid.org/dev-docs/pbs-bidders.html) - Prebid Server adapter documentation.  
 ![Header Bidding](image/dot_4.gif) [Prebid Server Java](https://github.com/prebid/prebid-server-java) - Java implementation of Prebid Server.  
-![Header Bidding](image/dot_5.gif) [Prebid tools](https://docs.prebid.org/tools/) - Debugging and implementation tools.  
-![Header Bidding](image/dot_1.gif) [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative) - Universal creative for rendering Prebid ad responses.  
-![Header Bidding](image/dot_2.gif) [Prebid.js](https://github.com/prebid/Prebid.js) - Open-source header bidding wrapper for web publishers.  
-![Header Bidding](image/dot_3.gif) [Prebid.js reference](https://docs.prebid.org/dev-docs/publisher-api-reference.html) - Publisher API documentation.  
-![Header Bidding](image/dot_4.gif) [Prebid.org](https://prebid.org/) - Prebid community, projects, and ecosystem.  
-![Header Bidding](image/dot_5.gif) [Professor Prebid](https://github.com/prebid/professor-prebid) - Browser extension for inspecting Prebid auctions.  
-![Header Bidding](image/dot_1.gif) [Professor Prebid extension](https://chromewebstore.google.com/detail/professor-prebid/kdnllijdimhbledmfdbljampcdphcbdc) - Chrome DevTools panel for Prebid debugging.
+![Header Bidding](image/dot_5.gif) [Prebid Universal Creative](https://github.com/prebid/prebid-universal-creative) - Universal creative for rendering Prebid ad responses.  
+![Header Bidding](image/dot_1.gif) [Prebid.js](https://github.com/prebid/Prebid.js) - Open-source header bidding wrapper for web publishers.  
+![Header Bidding](image/dot_2.gif) [Prebid.js reference](https://docs.prebid.org/dev-docs/publisher-api-reference.html) - Publisher API documentation.  
+![Header Bidding](image/dot_3.gif) [Prebid.org](https://prebid.org/) - Prebid community, projects, and ecosystem.  
+![Header Bidding](image/dot_4.gif) [Professor Prebid](https://github.com/prebid/professor-prebid) - Browser extension for inspecting Prebid auctions.  
+![Header Bidding](image/dot_5.gif) [Professor Prebid extension](https://chromewebstore.google.com/detail/professor-prebid/kdnllijdimhbledmfdbljampcdphcbdc) - Chrome DevTools panel for Prebid debugging.
 
 <img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
@@ -142,7 +142,7 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![DSP](image/dot_3.gif) [StackAdapt](https://www.stackadapt.com/) - Multi-channel programmatic advertising platform.  
 ![DSP](image/dot_4.gif) [The Trade Desk](https://www.thetradedesk.com/) - Independent programmatic advertising platform.  
 ![DSP](image/dot_5.gif) [Viant](https://www.viantinc.com/) - Demand-side platform and advertising technology.  
-![DSP](image/dot_1.gif) [Yahoo Advertising](https://www.yahooinc.com/advertising/) - Media, data, and advertising platform.
+![DSP](image/dot_1.gif) [Yahoo DSP](https://www.yahooinc.com/yahoo-dsp) - Omnichannel demand-side platform from Yahoo.
 
 <img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
@@ -151,10 +151,9 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Native Ads](image/dot_1.gif) [Dianomi](https://www.dianomi.com/) - Native advertising for financial and business publishers.  
 ![Native Ads](image/dot_2.gif) [MGID](https://mgid.com/) - Native advertising platform.  
 ![Native Ads](image/dot_3.gif) [Outbrain](https://www.outbrain.com/) - Content recommendation and native advertising.  
-![Native Ads](image/dot_4.gif) [Plista](https://www.plista.com/) - Native advertising and content recommendation.  
-![Native Ads](image/dot_5.gif) [Revcontent](https://revcontent.com/) - Content recommendation and native advertising.  
-![Native Ads](image/dot_1.gif) [Taboola](https://www.taboola.com/) - Content discovery and performance advertising.  
-![Native Ads](image/dot_2.gif) [Zemanta](https://www.zemanta.com/) - Native advertising and programmatic campaign platform.
+![Native Ads](image/dot_4.gif) [Revcontent](https://revcontent.com/) - Content recommendation and native advertising.  
+![Native Ads](image/dot_5.gif) [Taboola](https://www.taboola.com/) - Content discovery and performance advertising.  
+![Native Ads](image/dot_1.gif) [Zemanta](https://www.zemanta.com/) - Native advertising and programmatic campaign platform.
 
 <img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
@@ -237,7 +236,7 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Video](image/dot_3.gif) [Connatix](https://www.connatix.com/) - Video technology for publishers and advertisers.  
 ![Video](image/dot_4.gif) [dash.js reference player](https://reference.dashif.org/dash.js/) - DASH reference player and test interface.  
 ![Video](image/dot_5.gif) [FizzKit VAST Inspector](https://fizzkit.net/tools/vast-inspector/) - Inspect video ad tags.  
-![Video](image/dot_1.gif) [Fluid Player VAST Inspector](https://www.fluidplayer.com/vast-inspector/) - Test VAST tags using Fluid Player.  
+![Video](image/dot_1.gif) [Fluid Player](https://www.fluidplayer.com/) - Open-source HTML5 video player with VAST and VPAID ad builder.  
 ![Video](image/dot_2.gif) [FreeWheel](https://www.freewheel.com/) - Video advertising management and monetization.  
 ![Video](image/dot_3.gif) [Google IMA](https://developers.google.com/interactive-media-ads) - Interactive Media Ads SDKs and documentation.  
 ![Video](image/dot_4.gif) [Google IMA Flutter](https://github.com/googleads/googleads-mobile-flutter) - Google Mobile Ads Flutter plugin.  
@@ -247,7 +246,7 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Video](image/dot_3.gif) [IMA HTML5 SDK](https://github.com/googleads/googleads-ima-html5) - HTML5 video ad SDK.  
 ![Video](image/dot_4.gif) [IMA iOS](https://github.com/googleads/googleads-ima-ios) - iOS video advertising SDK.  
 ![Video](image/dot_5.gif) [IMA SDK Video Suite Inspector](https://googleads.github.io/googleads-ima-html5/vsi/) - Inspect and test IMA video ad tags.  
-![Video](image/dot_1.gif) [JW Player Ad Tester](https://www.jwplayer.com/developers/ad-tester/) - Test video advertising integrations.  
+![Video](image/dot_1.gif) [JW Player Ad Tester](https://developer-tools.jwplayer.com/ad-tester/) - Test video advertising integrations.  
 ![Video](image/dot_2.gif) [Primis](https://primis.tech/) - Video discovery and monetization platform.  
 ![Video](image/dot_3.gif) [Publica](https://getpublica.com/) - CTV ad platform and monetization.  
 ![Video](image/dot_4.gif) [Radiant Media Player VAST Inspector](https://www.radiantmediaplayer.com/vast-inspector.html) - Inspect VAST ad responses.  
@@ -276,10 +275,10 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Supply Chain](image/dot_2.gif) [Ads.txt Validator](https://www.adstxtvalidator.com/) - Validate ads.txt files.  
 ![Supply Chain](image/dot_3.gif) [AdVerify crawler](https://github.com/adops-tool/AdVerify-adstxt-appadstxt-Crawler) - Crawl ads.txt and app-ads.txt files.  
 ![Supply Chain](image/dot_4.gif) [App-ads.txt](https://app-ads-txt.com/) - App-ads.txt lookup and resources.  
-![Supply Chain](image/dot_5.gif) [FIZZ Ads.txt Validator](https://fizzkit.net/tools/adstxt-validator/) - Validate ads.txt entries.  
+![Supply Chain](image/dot_5.gif) [FIZZ Ads.txt Validator](https://fizzkit.net/tools/ads-txt-validator/) - Validate ads.txt entries.  
 ![Supply Chain](image/dot_1.gif) [Sellers.guide](https://sellers.guide/) - Sellers.json and supply chain transparency tools.  
 ![Supply Chain](image/dot_2.gif) [Sellers.json](https://iabtechlab.com/sellers-json/) - Seller transparency specification resources.  
-![Supply Chain](image/dot_4.gif) [Well-known.dev](https://well-known.dev/) - Explore well-known files and web identity resources.
+![Supply Chain](image/dot_3.gif) [Well-known.dev](https://well-known.dev/) - Explore well-known files and web identity resources.
 
 <img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
@@ -291,23 +290,23 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Privacy](image/dot_4.gif) [CookieYes](https://www.cookieyes.com/) - Cookie consent and privacy compliance.  
 ![Privacy](image/dot_5.gif) [Didomi](https://www.didomi.io/) - Consent and preference management platform.  
 ![Privacy](image/dot_1.gif) [FedCM](https://privacysandbox.google.com/cookies/fedcm) - Browser API for federated identity flows.  
-![Privacy](image/dot_2.gif) [Funding Choices](https://fundingchoices.google.com/) - Google publisher consent and funding tools.  
+![Privacy](image/dot_2.gif) [Google Privacy & messaging](https://support.google.com/admanager/answer/10075997) - Google Ad Manager publisher consent and messaging tools (formerly Funding Choices).  
 ![Privacy](image/dot_3.gif) [Habu](https://www.habu.com/) - Data clean room technology.  
 ![Privacy](image/dot_4.gif) [IAB GPP / TC String Codec](https://iabgpp.com/) - Encode and decode IAB GPP and TCF consent strings.  
 ![Privacy](image/dot_5.gif) [IAB TCF](https://iabtcf.com/) - Community resources and consent-string tools.  
 ![Privacy](image/dot_1.gif) [ID5](https://www.id5.io/) - Identity solution for digital advertising.  
 ![Privacy](image/dot_2.gif) [ID5 API JS](https://github.com/id5io/id5-api.js) - JavaScript client for ID5 APIs.  
 ![Privacy](image/dot_3.gif) [InfoSum](https://www.infosum.com/) - Privacy-safe data collaboration.  
-![Privacy](image/dot_4.gif) [iubenda](https://www.iubenda.com/) - Privacy compliance and consent tools.  
-![Privacy](image/dot_5.gif) [Ketch](https://www.ketch.com/) - Privacy and data governance platform.  
-![Privacy](image/dot_1.gif) [Klaro](https://github.com/kiprotect/klaro) - Open-source consent management solution.  
-![Privacy](image/dot_2.gif) [LiveRamp ATS](https://liveramp.com/) - Identity and data collaboration technology.  
-![Privacy](image/dot_3.gif) [Lotame](https://www.lotame.com/) - Data and identity solutions.  
-![Privacy](image/dot_4.gif) [OneTrust](https://www.onetrust.com/) - Privacy, consent, and governance platform.  
-![Privacy](image/dot_5.gif) [Osano](https://www.osano.com/) - Privacy management and consent solution.  
-![Privacy](image/dot_1.gif) [Permutive](https://www.permutive.com/) - Publisher data and audience platform.  
-![Privacy](image/dot_2.gif) [Private State Tokens](https://privacysandbox.google.com/protections/private-state-tokens) - Privacy-preserving tokens intended to help combat fraud and abuse.  
-![Privacy](image/dot_3.gif) [Quantcast Choice](https://www.quantcast.com/products/choice-consent-management-platform/) - Consent management platform.  
+![Privacy](image/dot_4.gif) [InMobi CMP](https://choice.inmobi.com/) - Consent management platform for web and app publishers (formerly Quantcast Choice).  
+![Privacy](image/dot_5.gif) [iubenda](https://www.iubenda.com/) - Privacy compliance and consent tools.  
+![Privacy](image/dot_1.gif) [Ketch](https://www.ketch.com/) - Privacy and data governance platform.  
+![Privacy](image/dot_2.gif) [Klaro](https://github.com/kiprotect/klaro) - Open-source consent management solution.  
+![Privacy](image/dot_3.gif) [LiveRamp ATS](https://liveramp.com/) - Identity and data collaboration technology.  
+![Privacy](image/dot_4.gif) [Lotame](https://www.lotame.com/) - Data and identity solutions.  
+![Privacy](image/dot_5.gif) [OneTrust](https://www.onetrust.com/) - Privacy, consent, and governance platform.  
+![Privacy](image/dot_1.gif) [Osano](https://www.osano.com/) - Privacy management and consent solution.  
+![Privacy](image/dot_2.gif) [Permutive](https://www.permutive.com/) - Publisher data and audience platform.  
+![Privacy](image/dot_3.gif) [Private State Tokens](https://privacysandbox.google.com/protections/private-state-tokens) - Privacy-preserving tokens intended to help combat fraud and abuse.  
 ![Privacy](image/dot_4.gif) [Snowflake](https://www.snowflake.com/) - Cloud data platform with data collaboration capabilities.  
 ![Privacy](image/dot_5.gif) [Sourcepoint](https://www.sourcepoint.com/) - Privacy consent and publisher monetization solutions.  
 ![Privacy](image/dot_1.gif) [TCF Global Vendor List](https://vendor-list.consensu.org/v3/vendor-list.json) - Official TCF vendor-list JSON endpoint.  
@@ -326,24 +325,23 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ## Ad Quality, Verification & Fraud Prevention
 
 ![Verification](image/dot_1.gif) [Ad Lightning](https://www.adlightning.com/) - Ad quality and creative scanning.  
-![Verification](image/dot_3.gif) [AdSecure](https://www.adsecure.com/) - Ad quality scanning and creative verification.  
-![Verification](image/dot_4.gif) [Anura](https://www.anura.io/) - Ad fraud detection and traffic quality analysis.  
-![Verification](image/dot_5.gif) [AppsFlyer Protect360](https://www.appsflyer.com/products/protect360/) - Mobile ad fraud protection.  
-![Verification](image/dot_1.gif) [Check My Ads](https://checkmyads.org/) - Community initiative for responsible digital advertising.  
-![Verification](image/dot_2.gif) [CHEQ](https://cheq.ai/) - Go-to-market security and invalid traffic protection.  
-![Verification](image/dot_3.gif) [Clean.io](https://www.clean.io/) - Malvertising and ad quality protection.  
-![Verification](image/dot_4.gif) [ClickCease](https://www.clickcease.com/) - Click fraud protection for paid campaigns.  
-![Verification](image/dot_5.gif) [Confiant](https://www.confiant.com/) - Client-side ad security and quality monitoring.  
-![Verification](image/dot_1.gif) [DoubleVerify](https://doubleverify.com/) - Media quality, verification, and measurement.  
-![Verification](image/dot_2.gif) [GeoEdge](https://www.geoedge.com/) - Ad quality and malvertising protection.  
-![Verification](image/dot_3.gif) [Human Security](https://www.humansecurity.com/) - Bot mitigation and digital fraud protection.  
-![Verification](image/dot_4.gif) [Integral Ad Science](https://integralads.com/) - Viewability, brand safety, and ad fraud measurement.  
-![Verification](image/dot_5.gif) [MFilterIt](https://www.mfilterit.com/) - Digital ad fraud and brand safety tools.  
-![Verification](image/dot_1.gif) [Pixalate](https://www.pixalate.com/) - Ad fraud, privacy, and compliance analytics.  
-![Verification](image/dot_2.gif) [Protected Media](https://www.protected.media/) - Invalid traffic detection and ad verification.  
-![Verification](image/dot_3.gif) [Scalarr](https://www.scalarr.io/) - Mobile advertising fraud prevention.  
-![Verification](image/dot_4.gif) [Spider AF](https://www.spideraf.com/) - Ad fraud detection and prevention.  
-![Verification](image/dot_5.gif) [TrafficGuard](https://www.trafficguard.ai/) - Invalid traffic detection and prevention.
+![Verification](image/dot_2.gif) [AdSecure](https://www.adsecure.com/) - Ad quality scanning and creative verification.  
+![Verification](image/dot_3.gif) [Anura](https://www.anura.io/) - Ad fraud detection and traffic quality analysis.  
+![Verification](image/dot_4.gif) [AppsFlyer Protect360](https://support.appsflyer.com/hc/en-us/articles/218254203-Protect360-anti-fraud-guide) - Mobile ad fraud protection.  
+![Verification](image/dot_5.gif) [Check My Ads](https://checkmyads.org/) - Community initiative for responsible digital advertising.  
+![Verification](image/dot_1.gif) [CHEQ](https://cheq.ai/) - Go-to-market security and invalid traffic protection.  
+![Verification](image/dot_2.gif) [ClickCease](https://www.clickcease.com/) - Click fraud protection for paid campaigns.  
+![Verification](image/dot_3.gif) [Confiant](https://www.confiant.com/) - Client-side ad security and quality monitoring.  
+![Verification](image/dot_4.gif) [DoubleVerify](https://doubleverify.com/) - Media quality, verification, and measurement.  
+![Verification](image/dot_5.gif) [GeoEdge](https://www.geoedge.com/) - Ad quality and malvertising protection.  
+![Verification](image/dot_1.gif) [Human Security](https://www.humansecurity.com/) - Bot mitigation and digital fraud protection.  
+![Verification](image/dot_2.gif) [Integral Ad Science](https://integralads.com/) - Viewability, brand safety, and ad fraud measurement.  
+![Verification](image/dot_3.gif) [MFilterIt](https://www.mfilterit.com/) - Digital ad fraud and brand safety tools.  
+![Verification](image/dot_4.gif) [Pixalate](https://www.pixalate.com/) - Ad fraud, privacy, and compliance analytics.  
+![Verification](image/dot_5.gif) [Protected Media](https://www.protected.media/) - Invalid traffic detection and ad verification.  
+![Verification](image/dot_1.gif) [Scalarr](https://www.scalarr.io/) - Mobile advertising fraud prevention.  
+![Verification](image/dot_2.gif) [Spider AF](https://www.spideraf.com/) - Ad fraud detection and prevention.  
+![Verification](image/dot_3.gif) [TrafficGuard](https://www.trafficguard.ai/) - Invalid traffic detection and prevention.
 
 <img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
@@ -423,18 +421,17 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Creative](image/dot_4.gif) [Creatopy](https://www.creatopy.com/) - Ad design and creative production platform.  
 ![Creative](image/dot_5.gif) [DFP GPT Inspector](https://dfpgpt.appspot.com/) - Inspect Google Publisher Tag requests.  
 ![Creative](image/dot_1.gif) [FFmpeg](https://ffmpeg.org/) - Multimedia processing toolkit for video and audio.  
-![Creative](image/dot_2.gif) [Flashtalking](https://www.flashtalking.com/) - Ad serving, creative, and measurement technology.  
-![Creative](image/dot_3.gif) [Google Ads Lighthouse plugin](https://github.com/googleads/publisher-ads-lighthouse-plugin) - Audit publisher ad performance with Lighthouse.  
-![Creative](image/dot_5.gif) [Google Web Designer](https://webdesigner.withgoogle.com/) - Create HTML5 ads and other web content.  
-![Creative](image/dot_1.gif) [Google Web Designer cached libraries](https://s0.2mdn.net/ads/studio/cached_libs/index.html) - Google-hosted libraries for ad creatives.  
-![Creative](image/dot_2.gif) [GSAP](https://gsap.com/) - JavaScript animation toolkit used for rich-media creatives.  
-![Creative](image/dot_3.gif) [HandBrake](https://handbrake.fr/) - Open-source video transcoder.  
-![Creative](image/dot_4.gif) [HTML5 Ads Validator](https://h5validator.appspot.com/adwords/asset) - Validate HTML5 Google Ads assets.  
-![Creative](image/dot_5.gif) [Innovid](https://www.innovid.com/) - CTV advertising, delivery, and measurement.  
-![Creative](image/dot_1.gif) [Jivox](https://www.jivox.com/) - Personalized digital advertising and creative automation.  
-![Creative](image/dot_2.gif) [Rich Media Gallery Tools](https://richmediagallery.com/tools/) - Rich-media creative resources and utilities.  
-![Creative](image/dot_4.gif) [Squoosh](https://squoosh.app/) - Browser-based image compression and conversion.  
-![Creative](image/dot_5.gif) [TinyPNG](https://tinypng.com/) - Compress PNG and JPEG assets.
+![Creative](image/dot_2.gif) [Google Ads Lighthouse plugin](https://github.com/googleads/publisher-ads-lighthouse-plugin) - Audit publisher ad performance with Lighthouse.  
+![Creative](image/dot_3.gif) [Google Studio hosted libraries](https://support.google.com/richmedia/answer/6307288) - Google-hosted JavaScript libraries for HTML5 ad creatives.  
+![Creative](image/dot_4.gif) [Google Web Designer](https://webdesigner.withgoogle.com/) - Create HTML5 ads and other web content.  
+![Creative](image/dot_5.gif) [GSAP](https://gsap.com/) - JavaScript animation toolkit used for rich-media creatives.  
+![Creative](image/dot_1.gif) [HandBrake](https://handbrake.fr/) - Open-source video transcoder.  
+![Creative](image/dot_2.gif) [HTML5 Ads Validator](https://h5validator.appspot.com/adwords/asset) - Validate HTML5 Google Ads assets.  
+![Creative](image/dot_3.gif) [Innovid](https://www.innovid.com/) - Omnichannel ad serving, creative, and CTV measurement (includes Flashtalking).  
+![Creative](image/dot_4.gif) [Jivox](https://www.jivox.com/) - Personalized digital advertising and creative automation.  
+![Creative](image/dot_5.gif) [Rich Media Gallery Tools](https://richmediagallery.com/tools/) - Rich-media creative resources and utilities.  
+![Creative](image/dot_1.gif) [Squoosh](https://squoosh.app/) - Browser-based image compression and conversion.  
+![Creative](image/dot_2.gif) [TinyPNG](https://tinypng.com/) - Compress PNG and JPEG assets.
 
 <img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
@@ -591,8 +588,7 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Research](image/dot_3.gif) [SpyFu](https://www.spyfu.com/) - Search advertising and SEO competitive research.  
 ![Research](image/dot_4.gif) [URLScan.io](https://urlscan.io/) - Analyze and inspect websites and their requests.  
 ![Research](image/dot_5.gif) [ViewDNS](https://viewdns.info/) - DNS, IP, and domain lookup utilities.  
-![Research](image/dot_1.gif) [Wappalyzer](https://www.wappalyzer.com/) - Identify website technologies.  
-![Research](image/dot_2.gif) [WhatRunsWhere](https://www.whatrunswhere.com/) - Competitive display advertising intelligence.
+![Research](image/dot_1.gif) [Wappalyzer](https://www.wappalyzer.com/) - Identify website technologies.
 
 <img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
@@ -624,19 +620,18 @@ A curated directory of practical resources for advertising operations (AdOps), a
 ![Learning](image/dot_1.gif) [Clearcode AdTech Book](https://clearcode.cc/adtech-book/) - Introductory guide to ad-tech concepts.  
 ![Learning](image/dot_2.gif) [Digiday](https://digiday.com/) - Digital media, marketing, and publishing news.  
 ![Learning](image/dot_3.gif) [ExchangeWire](https://www.exchangewire.com/) - Programmatic and digital media news.  
-![Learning](image/dot_4.gif) [Google Skillshop](https://skillshop.withgoogle.com/) - Google Ads and analytics training.  
+![Learning](image/dot_4.gif) [Google Skillshop](https://skillshop.withgoogle.com/) - Google Ads, Ad Manager, and analytics training.  
 ![Learning](image/dot_5.gif) [Marketingecture](https://www.marketecture.tv/) - Marketing technology interviews and education.  
 ![Learning](image/dot_1.gif) [MediaPost](https://www.mediapost.com/) - Advertising and media news and analysis.  
 ![Learning](image/dot_2.gif) [Mobile Dev Memo](https://mobiledevmemo.com/) - Mobile growth and advertising analysis.  
 ![Learning](image/dot_3.gif) [Programmatic Ads](https://github.com/programmatic-ads-io) - Programmatic advertising projects and resources.  
-![Learning](image/dot_4.gif) [Publisher University](https://publisheruniversity.withgoogle.com/) - Publisher-focused learning resources.  
-![Learning](image/dot_5.gif) [r/adops](https://www.reddit.com/r/adops/) - Community for advertising operations professionals.  
-![Learning](image/dot_1.gif) [r/adtech](https://www.reddit.com/r/adtech/) - Community about advertising technology.  
-![Learning](image/dot_2.gif) [r/programmatic](https://www.reddit.com/r/programmatic/) - Discussion of programmatic advertising.  
-![Learning](image/dot_3.gif) [Simo Ahava](https://www.simoahava.com/) - Analytics, tagging, and measurement tutorials.  
-![Learning](image/dot_4.gif) [The Drum](https://www.thedrum.com/) - Global marketing and media coverage.  
-![Learning](image/dot_5.gif) [The Trade Desk Edge Academy](https://www.thetradedesk.com/us/edge-academy) - Digital media and programmatic learning.  
-![Learning](image/dot_1.gif) [VideoWeek](https://www.videoweek.com/) - Video advertising and streaming industry news.
+![Learning](image/dot_4.gif) [r/adops](https://www.reddit.com/r/adops/) - Community for advertising operations professionals.  
+![Learning](image/dot_5.gif) [r/adtech](https://www.reddit.com/r/adtech/) - Community about advertising technology.  
+![Learning](image/dot_1.gif) [r/programmatic](https://www.reddit.com/r/programmatic/) - Discussion of programmatic advertising.  
+![Learning](image/dot_2.gif) [Simo Ahava](https://www.simoahava.com/) - Analytics, tagging, and measurement tutorials.  
+![Learning](image/dot_3.gif) [The Drum](https://www.thedrum.com/) - Global marketing and media coverage.  
+![Learning](image/dot_4.gif) [The Trade Desk Edge Academy](https://www.thetradedesk.com/us/edge-academy) - Digital media and programmatic learning.  
+![Learning](image/dot_5.gif) [VideoWeek](https://www.videoweek.com/) - Video advertising and streaming industry news.
 
 <img src="image/line-svg-3D444D-alg.svg" /> <!-- -SVG-Line- -->
 
